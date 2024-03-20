@@ -14,7 +14,7 @@
 		".": "./mod.ts"
 	},
 	"imports": {
-		"https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.0/mod.ts": "jsr:@hugoalh/cross-env@1.0.0",
+		"https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts": "jsr:@hugoalh/cross-env@1.0.1",
 		"https://raw.githubusercontent.com/hugoalh-studio/is-json-ts/v1.0.0/mod.ts": "jsr:@hugoalh/is-json@1.0.0",
 		"https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts": "jsr:@hugoalh/is-string-singleline@1.0.0"
 	},

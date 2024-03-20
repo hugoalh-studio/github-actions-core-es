@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { isAbsolute as isPathAbsolute } from "node:path";
-import { getEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.0/mod.ts";
+import { getEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
 import { type JSONObject } from "https://raw.githubusercontent.com/hugoalh-studio/is-json-ts/v1.0.0/mod.ts";
 /**
  * Get the debug status of the GitHub Actions runner.

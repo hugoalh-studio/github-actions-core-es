@@ -1,5 +1,5 @@
 import { delimiter as pathDelimiter } from "node:path";
-import { getEnv, setEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.0/mod.ts";
+import { getEnv, setEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
 import { GitHubActionsFileLineCommand, GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
 const regexpEnvironmentVariableKeyForbidden = /^(?:CI|PATH)$|^(?:ACTIONS|GITHUB|RUNNER)_/i;
