@@ -38,20 +38,20 @@ function escapeStdOutCommandPropertyValue(item: string): string {
 	return escapeStdOutCommandValue(item).replaceAll(",", "%2C").replaceAll(":", "%3A");
 }
 /**
- * Communicate with the GitHub Actions runner via stdout command.
+ * **\[🅰️ ADVANCED\]** Communicate with the GitHub Actions runner via stdout command.
  */
 export class GitHubActionsStdOutCommand {
 	#command: string;
 	#message = "";
 	#properties: Map<string, string> = new Map<string, string>();
 	/**
-	 * Create new instance to communicate with the GitHub Actions runner via stdout command.
+	 * **\[🅰️ ADVANCED\]** Create new instance to communicate with the GitHub Actions runner via stdout command.
 	 * @param {string} command StdOut command.
 	 * @param {string} [message] Message of the stdout command.
 	 */
 	constructor(command: string, message?: string);
 	/**
-	 * Create new instance to communicate with the GitHub Actions runner via stdout command.
+	 * **\[🅰️ ADVANCED\]** Create new instance to communicate with the GitHub Actions runner via stdout command.
 	 * @param {string} command StdOut command.
 	 * @param {{ [key: string]: string; } | Map<string, string> | Record<string, string>} properties Properties of the stdout command.
 	 * @param {string} [message] Message of the stdout command.

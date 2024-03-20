@@ -30,7 +30,7 @@ export interface GitHubActionsEnvironmentVariableOptions {
 	scopeSubsequent?: boolean;
 }
 /**
- * Handle the environment variables in the GitHub Actions runner.
+ * **\[🅰️ ADVANCED\]** Handle the exportation of environment variables in the GitHub Actions runner.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -38,12 +38,12 @@ export interface GitHubActionsEnvironmentVariableOptions {
  * > - File System - Read (`allow-read`)
  * > - File System - Write (`allow-write`)
  */
-export class GitHubActionsEnvironmentVariable {
+export class GitHubActionsEnvironmentVariableExportation {
 	#command: GitHubActionsFileMapCommand = new GitHubActionsFileMapCommand("GITHUB_ENV");
 	#scopeCurrent: boolean;
 	#scopeSubsequent: boolean;
 	/**
-	 * Create new instance to handle the environment variables in the GitHub Actions runner.
+	 * **\[🅰️ ADVANCED\]** Create new instance to handle the exportation of environment variables in the GitHub Actions runner.
 	 * 
 	 * > **🛡️ Require Permission**
 	 * >
@@ -77,7 +77,7 @@ export class GitHubActionsEnvironmentVariable {
 		return this;
 	}
 	/**
-	 * Set the environment variable.
+	 * Set an environment variable.
 	 * @param {string} key Key of the environment variable.
 	 * @param {string} value Value of the environment variable.
 	 * @returns {this}
@@ -114,33 +114,7 @@ export class GitHubActionsEnvironmentVariable {
 	}
 }
 /**
- * Clear the environment variables for all of the subsequent steps which set in the current step.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
- * @returns {void}
- */
-export function clearEnvironmentVariables(): void {
-	new GitHubActionsEnvironmentVariable().clearSubsequent();
-}
-/**
- * Optimize the environment variables for all of the subsequent steps which set in the current step to reduce size whenever possible.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
- * @returns {void}
- */
-export function optimizeEnvironmentVariables(): void {
-	new GitHubActionsEnvironmentVariable().optimizeSubsequent();
-}
-/**
- * Set the environment variable.
+ * Set an environment variable.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -152,7 +126,13 @@ export function optimizeEnvironmentVariables(): void {
  * @param {GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions} [options={}] Options.
  * @returns {void}
  */
-export function setEnvironmentVariable(key: string, value: string, options?: GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions): void;
+export function setEnvironmentVariable(key: string, value: string, options: GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions = {}): void {
+	const instance: GitHubActionsEnvironmentVariableExportation = new GitHubActionsEnvironmentVariableExportation(options);
+	instance.set(key, value);
+	if (options.optimize) {
+		instance.optimizeSubsequent();
+	}
+}
 /**
  * Set the environment variables.
  * 
@@ -165,24 +145,15 @@ export function setEnvironmentVariable(key: string, value: string, options?: Git
  * @param {GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions} [options={}] Options.
  * @returns {void}
  */
-export function setEnvironmentVariable(pairs: { [key: string]: string; } | Map<string, string> | Record<string, string>, options?: GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions): void;
-export function setEnvironmentVariable(param0: string | { [key: string]: string; } | Map<string, string> | Record<string, string>, param1?: string | GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions, param2?: GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions): void {
-	const { input, options = {} } = (typeof param0 === "string") ? {
-		input: [param0, param1 as string],
-		options: param2
-	} : {
-		input: [param0],
-		options: param1 as GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions
-	};
-	const instance: GitHubActionsEnvironmentVariable = new GitHubActionsEnvironmentVariable(options);
-	//@ts-ignore Overload is correct.
-	instance.set(...input);
+export function setEnvironmentVariables(pairs: { [key: string]: string; } | Map<string, string> | Record<string, string>, options: GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions = {}): void {
+	const instance: GitHubActionsEnvironmentVariableExportation = new GitHubActionsEnvironmentVariableExportation(options);
+	instance.set(pairs);
 	if (options.optimize) {
 		instance.optimizeSubsequent();
 	}
 }
 /**
- * Handle the PATH in the GitHub Actions runner.
+ * **\[🅰️ ADVANCED\]** Handle the exportation of PATH in the GitHub Actions runner.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -190,12 +161,12 @@ export function setEnvironmentVariable(param0: string | { [key: string]: string;
  * > - File System - Read (`allow-read`)
  * > - File System - Write (`allow-write`)
  */
-export class GitHubActionsPATH {
+export class GitHubActionsPATHExportation {
 	#command: GitHubActionsFileLineCommand = new GitHubActionsFileLineCommand("GITHUB_PATH");
 	#scopeCurrent: boolean;
 	#scopeSubsequent: boolean;
 	/**
-	 * Create new instance to handle the PATH in the GitHub Actions runner.
+	 * **\[🅰️ ADVANCED\]** Create new instance to handle the exportation of PATH in the GitHub Actions runner.
 	 * 
 	 * > **🛡️ Require Permission**
 	 * >
@@ -271,35 +242,9 @@ export class GitHubActionsPATH {
  * @returns {void}
  */
 export function addPATH(path: string, options: GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions = {}): void {
-	const instance: GitHubActionsPATH = new GitHubActionsPATH(options);
+	const instance: GitHubActionsPATHExportation = new GitHubActionsPATHExportation(options);
 	instance.add(path);
 	if (options.optimize) {
 		instance.optimizeSubsequent();
 	}
-}
-/**
- * Clear the PATH for all of the subsequent steps which set in the current step.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
- * @returns {void}
- */
-export function clearPATH(): void {
-	new GitHubActionsPATH().clearSubsequent();
-}
-/**
- * Optimize the PATH for all of the subsequent steps which set in the current step to reduce size whenever possible.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
- * @returns {void}
- */
-export function optimizePATH(): void {
-	new GitHubActionsPATH().optimizeSubsequent();
 }

@@ -12,7 +12,7 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 
 ## 🌟 Feature
 
-- Ability to use directly on GitHub Actions workflow with Deno runtime without extra setup.
+- Ability to use directly on GitHub Actions with Deno runtime without extra setup.
 - Full ModuleJS.
 
 ## 🎯 Target
@@ -114,25 +114,11 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 > - [Deno CLI `deno doc`](https://deno.land/manual/tools/documentation_generator)
 > - [JSR](https://jsr.io/@hugoalh/github-actions-core)
 
-### Class
-
-- `GitHubActionsEnvironmentVariable`
-- `GitHubActionsFileLineCommand`
-- `GitHubActionsFileMapCommand`
-- `GitHubActionsOutput`
-- `GitHubActionsPATH`
-- `GitHubActionsState`
-- `GitHubActionsStdOutCommand`
-
 ### Function
 
 - `addPATH`
 - `addProblemMatcher`
 - `addSecretMask`
-- `clearEnvironmentVariables`
-- `clearOutputs`
-- `clearPATH`
-- `clearStates`
 - `disableEchoStdOutCommand`
 - `disableProcessStdOutCommand`
 - `enableEchoStdOutCommand`
@@ -149,20 +135,16 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `getStateRaw`
 - `getWebhookEventPayload`
 - `getWorkflowRunURL`
-- `isDebug`
-- `isInRunnerMachine`
-- `optimizeEnvironmentVariables`
-- `optimizeOutputs`
-- `optimizePATH`
-- `optimizeStates`
+- `isInRunner`
 - `removeProblemMatcher`
 - `setEnvironmentVariable`
+- `setEnvironmentVariables`
 - `setOutput`
 - `setOutputs`
 - `setState`
 - `setStates`
 - `startLogGroup`
-- `validateInRunnerMachine`
+- `validateInRunner`
 - `writeAnnotation`
 - `writeDebug`
 - `writeError`

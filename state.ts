@@ -29,7 +29,7 @@ export function getState(key: string): string {
 	return getStateRaw(key) ?? "";
 }
 /**
- * Handle the states in the GitHub Actions runner.
+ * **\[🅰️ ADVANCED\]** Handle the exportation of states in the GitHub Actions runner.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -37,7 +37,7 @@ export function getState(key: string): string {
  * > - File System - Read (`allow-read`)
  * > - File System - Write (`allow-write`)
  */
-export class GitHubActionsState {
+export class GitHubActionsStateExportation {
 	#command: GitHubActionsFileMapCommand = new GitHubActionsFileMapCommand("GITHUB_STATE");
 	/**
 	 * Clear the states which set in the current step.
@@ -56,7 +56,7 @@ export class GitHubActionsState {
 		return this;
 	}
 	/**
-	 * Set the state.
+	 * Set a state.
 	 * @param {string} key Key of the state.
 	 * @param {string} value Value of the state.
 	 * @returns {this}
@@ -90,33 +90,7 @@ export class GitHubActionsState {
 	}
 }
 /**
- * Clear the states which set in the current step.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
- * @returns {void}
- */
-export function clearStates(): void {
-	new GitHubActionsState().clear();
-}
-/**
- * Optimize the states which set in the current step to reduce size whenever possible.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
- * @returns {void}
- */
-export function optimizeStates(): void {
-	new GitHubActionsState().optimize();
-}
-/**
- * Set the state.
+ * Set a state.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -129,7 +103,7 @@ export function optimizeStates(): void {
  * @returns {void}
  */
 export function setState(key: string, value: string, options: GitHubActionsFileCommandOptions = {}): void {
-	const instance: GitHubActionsState = new GitHubActionsState();
+	const instance: GitHubActionsStateExportation = new GitHubActionsStateExportation();
 	instance.set(key, value);
 	if (options.optimize) {
 		instance.optimize();
@@ -148,7 +122,7 @@ export function setState(key: string, value: string, options: GitHubActionsFileC
  * @returns {void}
  */
 export function setStates(pairs: { [key: string]: string; } | Map<string, string> | Record<string, string>, options: GitHubActionsFileCommandOptions = {}): void {
-	const instance: GitHubActionsState = new GitHubActionsState();
+	const instance: GitHubActionsStateExportation = new GitHubActionsStateExportation();
 	instance.set(pairs);
 	if (options.optimize) {
 		instance.optimize();

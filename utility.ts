@@ -126,7 +126,7 @@ export interface GitHubActionsRunnerMachineTestOptions {
 /**
  * Test the current process whether is executing inside the GitHub Actions runner.
  * 
- * If this test is mandatory, use function {@linkcode validateInRunnerMachine} instead.
+ * If this test is mandatory, use function {@linkcode validateInRunner} instead.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -134,34 +134,35 @@ export interface GitHubActionsRunnerMachineTestOptions {
  * @param {GitHubActionsRunnerMachineTestOptions} [options={}] Options.
  * @returns {boolean} Test result.
  */
-export function isInRunnerMachine(options: GitHubActionsRunnerMachineTestOptions = {}): boolean {
+export function isInRunner(options: GitHubActionsRunnerMachineTestOptions = {}): boolean {
 	const { artifact = false, cache = false, oidc = false }: GitHubActionsRunnerMachineTestOptions = options;
-	let isSuccess = true;
-	for (const { name, value: valueExpected } of [
-		...defaultEnvironmentVariables,
-		{ name: "ACTIONS_RUNTIME_TOKEN", need: artifact || cache },
-		{ name: "ACTIONS_RUNTIME_URL", need: artifact },
-		{ name: "ACTIONS_CACHE_URL", need: cache },
-		{ name: "ACTIONS_ID_TOKEN_REQUEST_TOKEN", need: oidc },
-		{ name: "ACTIONS_ID_TOKEN_REQUEST_URL", need: oidc }
-	].filter(({ need }: GitHubActionsDefaultEnvironmentVariableMeta): boolean => {
-		return (need ?? true);
-	})) {
-		const valueCurrent: string | undefined = getEnv(name);
-		if (
-			typeof valueCurrent === "undefined" ||
-			(typeof valueExpected !== "undefined" && valueCurrent !== valueExpected)
-		) {
-			isSuccess = false;
-			console.warn(`Unable to get the GitHub Actions resources, environment variable \`${name}\` is not defined, or not contain an expected value!`);
-		}
-	}
-	return isSuccess;
+	return !(
+		[
+			...defaultEnvironmentVariables,
+			{ name: "ACTIONS_RUNTIME_TOKEN", need: artifact || cache },
+			{ name: "ACTIONS_RUNTIME_URL", need: artifact },
+			{ name: "ACTIONS_CACHE_URL", need: cache },
+			{ name: "ACTIONS_ID_TOKEN_REQUEST_TOKEN", need: oidc },
+			{ name: "ACTIONS_ID_TOKEN_REQUEST_URL", need: oidc }
+		].filter(({ need }: GitHubActionsDefaultEnvironmentVariableMeta): boolean => {
+			return (need ?? true);
+		}).map<boolean>(({ name, value: valueExpected }: GitHubActionsDefaultEnvironmentVariableMeta): boolean => {
+			const valueCurrent: string | undefined = getEnv(name);
+			if (
+				typeof valueCurrent === "undefined" ||
+				(typeof valueExpected !== "undefined" && valueCurrent !== valueExpected)
+			) {
+				console.warn(`Unable to get the GitHub Actions resources, environment variable \`${name}\` is not defined, or not contain an expected value!`);
+				return false;
+			}
+			return true;
+		}).includes(false)
+	);
 }
 /**
  * Validate the current process whether is executing inside the GitHub Actions runner.
  * 
- * If this test is optional, use function {@linkcode isInRunnerMachine} instead.
+ * If this test is optional, use function {@linkcode isInRunner} instead.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -169,8 +170,8 @@ export function isInRunnerMachine(options: GitHubActionsRunnerMachineTestOptions
  * @param {GitHubActionsRunnerMachineTestOptions} [options={}] Options.
  * @returns {void}
  */
-export function validateInRunnerMachine(options: GitHubActionsRunnerMachineTestOptions = {}): void {
-	if (!isInRunnerMachine(options)) {
+export function validateInRunner(options: GitHubActionsRunnerMachineTestOptions = {}): void {
+	if (!isInRunner(options)) {
 		throw new Error("This process requires to invoke inside the GitHub Actions environment!");
 	}
 }

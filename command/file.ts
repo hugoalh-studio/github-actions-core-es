@@ -12,7 +12,7 @@ const commandsFile: Set<string> = new Set<string>([
 ]);
 const regexpCommandFile = /^(?:[\dA-Z][\dA-Z_-]*)?[\dA-Z]$/;
 /**
- * Communicate with the GitHub Actions runner via file command.
+ * **\[🅰️ ADVANCED\]** Communicate with the GitHub Actions runner via file command.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -24,7 +24,7 @@ const regexpCommandFile = /^(?:[\dA-Z][\dA-Z_-]*)?[\dA-Z]$/;
 class GitHubActionsFileCommandBase {
 	#commandPath: string;
 	/**
-	 * Create new instance to communicate with the GitHub Actions runner via file command.
+	 * **\[🅰️ ADVANCED\]** Create new instance to communicate with the GitHub Actions runner via file command.
 	 * 
 	 * > **🛡️ Require Permission**
 	 * >
@@ -73,7 +73,7 @@ export interface GitHubActionsFileCommandOptions {
 	optimize?: boolean;
 }
 /**
- * Communicate with the GitHub Actions runner via file line command.
+ * **\[🅰️ ADVANCED\]** Communicate with the GitHub Actions runner via file line command.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -134,7 +134,7 @@ function formatFileMapCommand(inputs: Map<string, string>): string {
 	}).join(EOL);
 }
 /**
- * Communicate with the GitHub Actions runner via file map command.
+ * **\[🅰️ ADVANCED\]** Communicate with the GitHub Actions runner via file map command.
  * 
  * > **🛡️ Require Permission**
  * >

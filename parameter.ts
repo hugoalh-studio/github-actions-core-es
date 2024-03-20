@@ -134,7 +134,7 @@ export function getInputRegExp(key: string, options: GitHubActionsInputOptions =
 	throw new SyntaxError(`\`${value}\` (input \`${key}\`) is not a valid regular expression!`);
 }
 /**
- * Handle the outputs in the GitHub Actions runner.
+ * **\[🅰️ ADVANCED\]** Handle the outputs in the GitHub Actions runner.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -161,7 +161,7 @@ export class GitHubActionsOutput {
 		return this;
 	}
 	/**
-	 * Set the output.
+	 * Set an output.
 	 * @param {string} key Key of the output.
 	 * @param {string} value Value of the output.
 	 * @returns {this}
@@ -195,33 +195,7 @@ export class GitHubActionsOutput {
 	}
 }
 /**
- * Clear the outputs which set in the current step.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
- * @returns {void}
- */
-export function clearOutputs(): void {
-	new GitHubActionsOutput().clear();
-}
-/**
- * Optimize the outputs which set in the current step to reduce size whenever possible.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
- * @returns {void}
- */
-export function optimizeOutputs(): void {
-	new GitHubActionsOutput().optimize();
-}
-/**
- * Set the output.
+ * Set an output.
  * 
  * > **🛡️ Require Permission**
  * >
