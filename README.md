@@ -10,9 +10,16 @@
 
 A TypeScript module to provide a better and easier way for GitHub Actions to communicate with the runner, and the toolkit for developing GitHub Actions in TypeScript.
 
+## ⚠️ Important
+
+[official-toolkit]: https://github.com/actions/toolkit
+
+This is a partial refactor of [the official toolkit][official-toolkit], not all of the features in [the official toolkit][official-toolkit] are available here, and not all of the features in here are available in [the official toolkit][official-toolkit].
+
 ## 🌟 Feature
 
 - Ability to use directly on GitHub Actions with Deno runtime without extra setup.
+- Compatible with bundler.
 - Full ModuleJS.
 
 ## 🎯 Target
