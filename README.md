@@ -137,6 +137,7 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `getState`
 - `getStateRaw`
 - `getWorkflowName`
+- `getWorkflowReferencePath`
 - `getWorkflowRunActionID`
 - `getWorkflowRunActorID`
 - `getWorkflowRunActorName`
@@ -149,6 +150,7 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `getWorkflowRunRunAttempt`
 - `getWorkflowRunURL`
 - `getWorkflowRunWebhookEventPayload`
+- `getWorkflowSHA`
 - `isInRunner`
 - `removeProblemMatcher`
 - `setEnvironmentVariable`
@@ -174,6 +176,8 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `GitHubActionsFileCommandOptions`
 - `GitHubActionsInputOptions`
 - `GitHubActionsRunnerMachineTestOptions`
+- `GitHubReferenceMeta`
+- `GitHubReferenceType`
 
 ## ✍️ Example
 
