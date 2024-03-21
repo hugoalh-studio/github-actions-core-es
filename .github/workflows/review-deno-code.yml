@@ -24,7 +24,15 @@ jobs:
       matrix:
         runon:
           - "ubuntu-latest"
+        issub:
+          - false
+        include:
+          - runon: "macos-latest"
+            issub: true
+          - runon: "windows-latest"
+            issub: true
       fail-fast: false
     uses: "hugoalh/hugoalh/.github/workflows/call-review-deno-code-1.yml@main"
     with:
       runon: "${{matrix.runon}}"
+      issub: "${{matrix.issub}}"
