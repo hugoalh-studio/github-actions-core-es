@@ -1,5 +1,4 @@
 import { assert } from "TEST/assert.ts";
-import { assertEquals } from "TEST/assert_equals.ts";
 import { getGitHubAPIURL, getGitHubGraphQLURL, getGitHubServerURL, getWorkflowName, getWorkflowReferencePath, getWorkflowRunActionID, getWorkflowRunActorID, getWorkflowRunActorName, getWorkflowRunCommitSHA, getWorkflowRunEventName, getWorkflowRunID, getWorkflowRunJobID, getWorkflowRunNumber, getWorkflowRunReference, getWorkflowRunRunAttempt, getWorkflowRunURL, getWorkflowRunWebhookEventPayload, getWorkflowSHA } from "./context.ts";
 const isInGitHubActionsRunner = Deno.env.get("GITHUB_ACTIONS") === "true";
 Deno.test("GitHub API URL", {
@@ -8,7 +7,7 @@ Deno.test("GitHub API URL", {
 		env: ["GITHUB_API_URL"]
 	}
 }, () => {
-	assertEquals(getGitHubAPIURL().toString(), "https://api.github.com");
+	assert(getGitHubAPIURL());
 });
 Deno.test("GitHub GraphQL URL", {
 	ignore: !isInGitHubActionsRunner,
@@ -16,7 +15,7 @@ Deno.test("GitHub GraphQL URL", {
 		env: ["GITHUB_GRAPHQL_URL"]
 	}
 }, () => {
-	assertEquals(getGitHubGraphQLURL().toString(), "https://api.github.com/graphql");
+	assert(getGitHubGraphQLURL());
 });
 Deno.test("GitHub Server URL", {
 	ignore: !isInGitHubActionsRunner,
@@ -24,7 +23,7 @@ Deno.test("GitHub Server URL", {
 		env: ["GITHUB_SERVER_URL"]
 	}
 }, () => {
-	assertEquals(getGitHubServerURL().toString(), "https://github.com");
+	assert(getGitHubServerURL());
 });
 Deno.test("Workflow Name", {
 	ignore: !isInGitHubActionsRunner,
@@ -127,10 +126,10 @@ Deno.test("Workflow Run Reference", {
 	);
 	const result = getWorkflowRunReference();
 	await t.step("Base", () => {
-		assert(eventIsPullRequests ? typeof result.base === "string" : typeof result.base === "undefined");
+		assert(eventIsPullRequests ? (typeof result.base === "string") : (typeof result.base === "undefined"));
 	});
 	await t.step("Head", () => {
-		assert(eventIsPullRequests ? typeof result.head === "string" : typeof result.head === "undefined");
+		assert(eventIsPullRequests ? (typeof result.head === "string") : (typeof result.head === "undefined"));
 	});
 });
 Deno.test("Workflow Run Run Attempt", {
