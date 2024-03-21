@@ -114,6 +114,10 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 > - [Deno CLI `deno doc`](https://deno.land/manual/tools/documentation_generator)
 > - [JSR](https://jsr.io/@hugoalh/github-actions-core)
 
+### Class
+
+- `GitHubActionsSummary`
+
 ### Function
 
 - `addPATH`

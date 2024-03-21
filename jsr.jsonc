@@ -11,6 +11,7 @@
 		"./parameter": "./parameter.ts",
 		"./problem-matcher": "./problem_matcher.ts",
 		"./state": "./state.ts",
+		"./summary": "./summary.ts",
 		"./utility": "./utility.ts",
 		".": "./mod.ts"
 	},

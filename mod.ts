@@ -6,4 +6,5 @@ export { addMask, addSecret, addSecretMask, endLogGroup, enterLogGroup, exitLogG
 export { getInput, getInputBigInt, getInputBoolean, getInputNumber, getInputRaw, getInputRegExp, GitHubActionsOutput, setOutput, setOutputs, type GitHubActionsInputOptions } from "./parameter.ts";
 export { addProblemMatcher, removeProblemMatcher } from "./problem_matcher.ts";
 export { getState, getStateRaw, GitHubActionsStateExportation, setState, setStates } from "./state.ts";
+export { GitHubActionsSummary } from "./summary.ts";
 export { getDebugStatus, isDebug, isInRunner, validateInRunner, type GitHubActionsRunnerMachineTestOptions } from "./utility.ts";
