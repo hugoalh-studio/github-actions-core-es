@@ -138,6 +138,7 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `getStateRaw`
 - `getWorkflowName`
 - `getWorkflowRunActionID`
+- `getWorkflowRunActorID`
 - `getWorkflowRunActorName`
 - `getWorkflowRunCommitSHA`
 - `getWorkflowRunEventName`
