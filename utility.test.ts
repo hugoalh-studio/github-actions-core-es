@@ -1,4 +1,5 @@
-import { getGitHubAPIURL, getGitHubGraphQLURL, getGitHubServerURL, getWorkflowName, getWorkflowReferencePath, getWorkflowRunActionID, getWorkflowRunActorID, getWorkflowRunActorName, getWorkflowRunCommitSHA, getWorkflowRunEventName, getWorkflowRunID, getWorkflowRunJobID, getWorkflowRunNumber, getWorkflowRunReference, getWorkflowRunRunAttempt, getWorkflowRunURL, getWorkflowRunWebhookEventPayload, getWorkflowSHA } from "./context.ts";
+import { assert } from "TEST/assert.ts";
+import { getGitHubAPIURL, getGitHubGraphQLURL, getGitHubServerURL, getRunnerDebugStatus,getRunnerName, getRunnerOS, getWorkflowName, getWorkflowReferencePath, getWorkflowRunActionID, getWorkflowRunActorID, getWorkflowRunActorName, getWorkflowRunCommitSHA, getWorkflowRunEventName, getWorkflowRunID, getWorkflowRunJobID, getWorkflowRunNumber, getWorkflowRunReference, getWorkflowRunRunAttempt, getWorkflowRunURL, getWorkflowRunWebhookEventPayload, getWorkflowSHA, validateInRunner } from "./utility.ts";
 const isInGitHubActionsRunner = Deno.env.get("GITHUB_ACTIONS") === "true";
 Deno.test("GitHub API URL", {
 	ignore: !isInGitHubActionsRunner,
@@ -23,6 +24,35 @@ Deno.test("GitHub Server URL", {
 	}
 }, () => {
 	void getGitHubServerURL();
+});
+Deno.test("Runner Debug Status", {
+	ignore: !isInGitHubActionsRunner,
+	permissions: {
+		env: ["RUNNER_DEBUG"]
+	}
+}, () => {
+	void getRunnerDebugStatus();
+});
+Deno.test("Runner Name", {
+	ignore: !isInGitHubActionsRunner,
+	permissions: {
+		env: ["RUNNER_NAME"]
+	}
+}, () => {
+	void getRunnerName();
+});
+Deno.test("Runner OS", {
+	ignore: !isInGitHubActionsRunner,
+	permissions: {
+		env: ["RUNNER_OS"]
+	}
+}, () => {
+	const result = getRunnerOS();
+	assert(
+		(Deno.build.os === "darwin" && result === "macOS") ||
+		(Deno.build.os === "linux" && result === "Linux") ||
+		(Deno.build.os === "windows" && result === "Windows")
+	);
 });
 Deno.test("Workflow Name", {
 	ignore: !isInGitHubActionsRunner,
@@ -158,4 +188,12 @@ Deno.test("Workflow SHA", {
 	}
 }, () => {
 	void getWorkflowSHA();
+});
+Deno.test("Validate In Runner", {
+	ignore: !isInGitHubActionsRunner,
+	permissions: {
+		env: true
+	}
+}, () => {
+	void validateInRunner();
 });

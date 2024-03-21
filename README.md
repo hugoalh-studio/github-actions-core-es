@@ -128,7 +128,6 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `enableEchoStdOutCommand`
 - `enableProcessStdOutCommand`
 - `endLogGroup`
-- `getDebugStatus`
 - `getGitHubAPIURL`
 - `getGitHubGraphQLURL`
 - `getGitHubServerURL`
@@ -138,6 +137,9 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `getInputNumber`
 - `getInputRaw`
 - `getInputRegExp`
+- `getRunnerDebugStatus`
+- `getRunnerName`
+- `getRunnerOS`
 - `getState`
 - `getStateRaw`
 - `getWorkflowName`
@@ -180,6 +182,7 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `GitHubActionsFileCommandOptions`
 - `GitHubActionsInputOptions`
 - `GitHubActionsRunnerMachineTestOptions`
+- `GitHubActionsRunnerOS`
 - `GitHubReferenceMeta`
 - `GitHubReferenceType`
 
