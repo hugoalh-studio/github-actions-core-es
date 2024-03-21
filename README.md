@@ -125,6 +125,9 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `enableProcessStdOutCommand`
 - `endLogGroup`
 - `getDebugStatus`
+- `getGitHubAPIURL`
+- `getGitHubGraphQLURL`
+- `getGitHubServerURL`
 - `getInput`
 - `getInputBigInt`
 - `getInputBoolean`
@@ -133,8 +136,18 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `getInputRegExp`
 - `getState`
 - `getStateRaw`
-- `getWebhookEventPayload`
+- `getWorkflowName`
+- `getWorkflowRunActionID`
+- `getWorkflowRunActorName`
+- `getWorkflowRunCommitSHA`
+- `getWorkflowRunEventName`
+- `getWorkflowRunID`
+- `getWorkflowRunJobID`
+- `getWorkflowRunNumber`
+- `getWorkflowRunReference`
+- `getWorkflowRunRunAttempt`
 - `getWorkflowRunURL`
+- `getWorkflowRunWebhookEventPayload`
 - `isInRunner`
 - `removeProblemMatcher`
 - `setEnvironmentVariable`
@@ -156,6 +169,7 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `GitHubActionsAnnotationProperties`
 - `GitHubActionsAnnotationType`
 - `GitHubActionsEnvironmentVariableOptions`
+- `GitHubActionsEventName`
 - `GitHubActionsFileCommandOptions`
 - `GitHubActionsInputOptions`
 - `GitHubActionsRunnerMachineTestOptions`

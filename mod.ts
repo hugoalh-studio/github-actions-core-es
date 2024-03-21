@@ -5,4 +5,4 @@ export { addMask, addSecret, addSecretMask, endLogGroup, enterLogGroup, exitLogG
 export { getInput, getInputBigInt, getInputBoolean, getInputNumber, getInputRaw, getInputRegExp, GitHubActionsOutput, setOutput, setOutputs, type GitHubActionsInputOptions } from "./parameter.ts";
 export { addProblemMatcher, removeProblemMatcher } from "./problem_matcher.ts";
 export { getState, getStateRaw, GitHubActionsStateExportation, setState, setStates } from "./state.ts";
-export { getDebugStatus, getWebhookEventPayload, getWorkflowRunURL, isDebug, isInRunner, validateInRunner, type GitHubActionsRunnerMachineTestOptions } from "./utility.ts";
+export { getDebugStatus, getGitHubAPIURL, getGitHubGraphQLURL, getGitHubServerURL, getWorkflowName, getWorkflowRunActionID, getWorkflowRunActorName, getWorkflowRunCommitSHA, getWorkflowRunEventName, getWorkflowRunID, getWorkflowRunJobID, getWorkflowRunNumber, getWorkflowRunReference, getWorkflowRunRunAttempt, getWorkflowRunURL, getWorkflowRunWebhookEventPayload, isDebug, isInRunner, validateInRunner, type GitHubActionsEventName, type GitHubActionsRunnerMachineTestOptions } from "./utility.ts";
