@@ -130,7 +130,7 @@ function formatFileMapCommand(inputs: Map<string, string>): string {
 			key.search(delimiter) !== -1 ||
 			value.search(delimiter) !== -1
 		);
-		return `${key}<<${delimiter}${EOL}${value.replaceAll(/\r?\n/g, EOL)}\n${delimiter}`;
+		return `${key}<<${delimiter}${EOL}${value.replace(/\r?\n/g, EOL)}\n${delimiter}`;
 	}).join(EOL);
 }
 /**
