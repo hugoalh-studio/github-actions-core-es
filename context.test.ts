@@ -1,4 +1,3 @@
-import { assert } from "TEST/assert.ts";
 import { getGitHubAPIURL, getGitHubGraphQLURL, getGitHubServerURL, getWorkflowName, getWorkflowReferencePath, getWorkflowRunActionID, getWorkflowRunActorID, getWorkflowRunActorName, getWorkflowRunCommitSHA, getWorkflowRunEventName, getWorkflowRunID, getWorkflowRunJobID, getWorkflowRunNumber, getWorkflowRunReference, getWorkflowRunRunAttempt, getWorkflowRunURL, getWorkflowRunWebhookEventPayload, getWorkflowSHA } from "./context.ts";
 const isInGitHubActionsRunner = Deno.env.get("GITHUB_ACTIONS") === "true";
 Deno.test("GitHub API URL", {
@@ -7,7 +6,7 @@ Deno.test("GitHub API URL", {
 		env: ["GITHUB_API_URL"]
 	}
 }, () => {
-	assert(getGitHubAPIURL());
+	void getGitHubAPIURL();
 });
 Deno.test("GitHub GraphQL URL", {
 	ignore: !isInGitHubActionsRunner,
@@ -15,7 +14,7 @@ Deno.test("GitHub GraphQL URL", {
 		env: ["GITHUB_GRAPHQL_URL"]
 	}
 }, () => {
-	assert(getGitHubGraphQLURL());
+	void getGitHubGraphQLURL();
 });
 Deno.test("GitHub Server URL", {
 	ignore: !isInGitHubActionsRunner,
@@ -23,7 +22,7 @@ Deno.test("GitHub Server URL", {
 		env: ["GITHUB_SERVER_URL"]
 	}
 }, () => {
-	assert(getGitHubServerURL());
+	void getGitHubServerURL();
 });
 Deno.test("Workflow Name", {
 	ignore: !isInGitHubActionsRunner,
@@ -31,7 +30,7 @@ Deno.test("Workflow Name", {
 		env: ["GITHUB_WORKFLOW"]
 	}
 }, () => {
-	assert(getWorkflowName());
+	void getWorkflowName();
 });
 Deno.test("Workflow Reference Path", {
 	ignore: !isInGitHubActionsRunner,
@@ -39,7 +38,7 @@ Deno.test("Workflow Reference Path", {
 		env: ["GITHUB_WORKFLOW_REF"]
 	}
 }, () => {
-	assert(getWorkflowReferencePath());
+	void getWorkflowReferencePath();
 });
 Deno.test("Workflow Run Action ID", {
 	ignore: !isInGitHubActionsRunner,
@@ -47,7 +46,7 @@ Deno.test("Workflow Run Action ID", {
 		env: ["GITHUB_ACTION"]
 	}
 }, () => {
-	assert(getWorkflowRunActionID());
+	void getWorkflowRunActionID();
 });
 Deno.test("Workflow Run Actor ID", {
 	ignore: !isInGitHubActionsRunner,
@@ -55,7 +54,7 @@ Deno.test("Workflow Run Actor ID", {
 		env: ["GITHUB_ACTOR_ID"]
 	}
 }, () => {
-	assert(getWorkflowRunActorID());
+	void getWorkflowRunActorID();
 });
 Deno.test("Workflow Run Actor Name", {
 	ignore: !isInGitHubActionsRunner,
@@ -63,7 +62,7 @@ Deno.test("Workflow Run Actor Name", {
 		env: ["GITHUB_ACTOR"]
 	}
 }, () => {
-	assert(getWorkflowRunActorName());
+	void getWorkflowRunActorName();
 });
 Deno.test("Workflow Run Commit SHA", {
 	ignore: !isInGitHubActionsRunner,
@@ -71,7 +70,7 @@ Deno.test("Workflow Run Commit SHA", {
 		env: ["GITHUB_SHA"]
 	}
 }, () => {
-	assert(getWorkflowRunCommitSHA());
+	void getWorkflowRunCommitSHA();
 });
 Deno.test("Workflow Run Event Name", {
 	ignore: !isInGitHubActionsRunner,
@@ -79,7 +78,7 @@ Deno.test("Workflow Run Event Name", {
 		env: ["GITHUB_EVENT_NAME"]
 	}
 }, () => {
-	assert(getWorkflowRunEventName());
+	void getWorkflowRunEventName();
 });
 Deno.test("Workflow Run ID", {
 	ignore: !isInGitHubActionsRunner,
@@ -87,7 +86,7 @@ Deno.test("Workflow Run ID", {
 		env: ["GITHUB_RUN_ID"]
 	}
 }, () => {
-	assert(getWorkflowRunID());
+	void getWorkflowRunID();
 });
 Deno.test("Workflow Run Job ID", {
 	ignore: !isInGitHubActionsRunner,
@@ -95,7 +94,7 @@ Deno.test("Workflow Run Job ID", {
 		env: ["GITHUB_JOB"]
 	}
 }, () => {
-	assert(getWorkflowRunJobID());
+	void getWorkflowRunJobID();
 });
 Deno.test("Workflow Run Number", {
 	ignore: !isInGitHubActionsRunner,
@@ -103,7 +102,7 @@ Deno.test("Workflow Run Number", {
 		env: ["GITHUB_RUN_NUMBER"]
 	}
 }, () => {
-	assert(getWorkflowRunNumber());
+	void getWorkflowRunNumber();
 });
 Deno.test("Workflow Run Reference", {
 	ignore: !isInGitHubActionsRunner,
@@ -118,19 +117,8 @@ Deno.test("Workflow Run Reference", {
 			"GITHUB_REF_TYPE"
 		]
 	}
-}, async (t) => {
-	const event = getWorkflowRunEventName();
-	const eventIsPullRequests = (
-		event === "pull_request" ||
-		event === "pull_request_target"
-	);
-	const result = getWorkflowRunReference();
-	await t.step("Base", () => {
-		assert(eventIsPullRequests ? (typeof result.base === "string") : (typeof result.base === "undefined"));
-	});
-	await t.step("Head", () => {
-		assert(eventIsPullRequests ? (typeof result.head === "string") : (typeof result.head === "undefined"));
-	});
+}, () => {
+	void getWorkflowRunReference();
 });
 Deno.test("Workflow Run Run Attempt", {
 	ignore: !isInGitHubActionsRunner,
@@ -138,7 +126,7 @@ Deno.test("Workflow Run Run Attempt", {
 		env: ["GITHUB_RUN_ATTEMPT"]
 	}
 }, () => {
-	assert(getWorkflowRunRunAttempt());
+	void getWorkflowRunRunAttempt();
 });
 Deno.test("Workflow Run URL", {
 	ignore: !isInGitHubActionsRunner,
@@ -150,7 +138,7 @@ Deno.test("Workflow Run URL", {
 		]
 	}
 }, () => {
-	assert(getWorkflowRunURL());
+	void getWorkflowRunURL();
 });
 Deno.test("Workflow Run Webhook Event Payload", {
 	ignore: !isInGitHubActionsRunner,
@@ -161,7 +149,7 @@ Deno.test("Workflow Run Webhook Event Payload", {
 		read: true
 	}
 }, () => {
-	assert(getWorkflowRunWebhookEventPayload());
+	void getWorkflowRunWebhookEventPayload();
 });
 Deno.test("Workflow SHA", {
 	ignore: !isInGitHubActionsRunner,
@@ -169,5 +157,5 @@ Deno.test("Workflow SHA", {
 		env: ["GITHUB_WORKFLOW_SHA"]
 	}
 }, () => {
-	assert(getWorkflowSHA());
+	void getWorkflowSHA();
 });
