@@ -1,5 +1,5 @@
 import { assert } from "TEST/assert.ts";
-import { getGitHubAPIURL, getGitHubGraphQLURL, getGitHubServerURL, getRunnerDebugStatus,getRunnerName, getRunnerOS, getWorkflowName, getWorkflowReferencePath, getWorkflowRunActionID, getWorkflowRunActorID, getWorkflowRunActorName, getWorkflowRunCommitSHA, getWorkflowRunEventName, getWorkflowRunID, getWorkflowRunJobID, getWorkflowRunNumber, getWorkflowRunReference, getWorkflowRunRunAttempt, getWorkflowRunURL, getWorkflowRunWebhookEventPayload, getWorkflowSHA, validateInRunner } from "./utility.ts";
+import { getGitHubAPIURL, getGitHubGraphQLURL, getGitHubServerURL, getRunnerArchitecture, getRunnerDebugStatus, getRunnerName, getRunnerOS, getWorkflowName, getWorkflowReferencePath, getWorkflowRunActionID, getWorkflowRunActorID, getWorkflowRunActorName, getWorkflowRunCommitSHA, getWorkflowRunEventName, getWorkflowRunID, getWorkflowRunJobID, getWorkflowRunNumber, getWorkflowRunReference, getWorkflowRunRunAttempt, getWorkflowRunURL, getWorkflowRunWebhookEventPayload, getWorkflowSHA, validateInRunner } from "./utility.ts";
 const isInGitHubActionsRunner = Deno.env.get("GITHUB_ACTIONS") === "true";
 Deno.test("GitHub API URL", {
 	ignore: !isInGitHubActionsRunner,
@@ -24,6 +24,14 @@ Deno.test("GitHub Server URL", {
 	}
 }, () => {
 	void getGitHubServerURL();
+});
+Deno.test("Runner Architecture", {
+	ignore: !isInGitHubActionsRunner,
+	permissions: {
+		env: ["RUNNER_ARCH"]
+	}
+}, () => {
+	void getRunnerArchitecture();
 });
 Deno.test("Runner Debug Status", {
 	ignore: !isInGitHubActionsRunner,

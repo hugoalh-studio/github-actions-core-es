@@ -137,6 +137,7 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `getInputNumber`
 - `getInputRaw`
 - `getInputRegExp`
+- `getRunnerArchitecture`
 - `getRunnerDebugStatus`
 - `getRunnerName`
 - `getRunnerOS`
@@ -181,6 +182,7 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 - `GitHubActionsEventName`
 - `GitHubActionsFileCommandOptions`
 - `GitHubActionsInputOptions`
+- `GitHubActionsRunnerArchitecture`
 - `GitHubActionsRunnerMachineTestOptions`
 - `GitHubActionsRunnerOS`
 - `GitHubReferenceMeta`
