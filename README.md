@@ -200,6 +200,8 @@ This is a partial refactor of [the official toolkit][official-toolkit], not all 
 - `GitHubActionsRunnerArchitecture`
 - `GitHubActionsRunnerOS`
 - `GitHubActionsRunnerTestOptions`
+- `GitHubActionsWebhookEventPayload`
+- `GitHubActionsWebhookEventPayloadRepository`
 - `GitHubReferenceMeta`
 - `GitHubReferenceType`
 
