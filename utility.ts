@@ -397,10 +397,12 @@ export interface GitHubReferenceMeta {
  * @returns {GitHubReferenceMeta} Reference of the workflow run.
  */
 export function getWorkflowRunReference(): GitHubReferenceMeta {
+	const base: string | undefined = getEnv("GITHUB_BASE_REF");
 	const full: string | undefined = getEnv("GITHUB_REF");
 	if (typeof full === "undefined") {
 		throw new ReferenceError(`Unable to get the GitHub Actions workflow run reference, environment variable \`GITHUB_REF\` is not defined!`);
 	}
+	const head: string | undefined = getEnv("GITHUB_HEAD_REF");
 	const short: string | undefined = getEnv("GITHUB_REF_NAME");
 	if (typeof short === "undefined") {
 		throw new ReferenceError(`Unable to get the GitHub Actions workflow run reference, environment variable \`GITHUB_REF_NAME\` is not defined!`);
@@ -413,9 +415,9 @@ export function getWorkflowRunReference(): GitHubReferenceMeta {
 		throw new Error(`\`${type}\` is not a known GitHub Actions workflow run reference type!`);
 	}
 	return {
-		base: getEnv("GITHUB_BASE_REF"),
+		base: (typeof base === "string" && base.length > 0) ? base : undefined,
 		full,
-		head: getEnv("GITHUB_HEAD_REF"),
+		head: (typeof head === "string" && head.length > 0) ? head : undefined,
 		protected: getEnv("GITHUB_REF_PROTECTED") === "true",
 		short,
 		type: type as GitHubReferenceType
@@ -476,7 +478,7 @@ export function getWorkflowRunURL(): URL {
 	const serverURLString: string = getGitHubServerURL().toString();
 	return new URL(`${serverURLString}${serverURLString.endsWith("/") ? "" : "/"}${repository}/actions/runs/${getWorkflowRunID()}`);
 }
-export interface GitHubWebhookPayloadRepository {
+export interface GitHubActionsWebhookEventPayloadRepository {
 	full_name?: string;
 	html_url?: string;
 	name: string;
@@ -512,7 +514,7 @@ export interface GitHubActionsWebhookEventPayload {
 		body?: string;
 		[key: string]: JSONValueExtend | undefined;
 	};
-	repository?: GitHubWebhookPayloadRepository;
+	repository?: GitHubActionsWebhookEventPayloadRepository;
 	sender?: {
 		type: string;
 		[key: string]: JSONValueExtend | undefined;

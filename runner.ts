@@ -146,47 +146,47 @@ export function getRunnerWorkspacePath(): string {
 	return value;
 }
 interface GitHubActionsDefaultEnvironmentVariableMeta {
-	name: string;
+	key: string;
 	need?: boolean;
 	value?: string;
 }
-const defaultEnvironmentVariables: GitHubActionsDefaultEnvironmentVariableMeta[] = [
-	{ name: "CI", value: "true" },
-	{ name: "GITHUB_ACTION" },
-	{ name: "GITHUB_ACTIONS", value: "true" },
-	{ name: "GITHUB_ACTOR" },
-	{ name: "GITHUB_ACTOR_ID" },
-	{ name: "GITHUB_API_URL" },
-	{ name: "GITHUB_ENV" },
-	{ name: "GITHUB_EVENT_NAME" },
-	{ name: "GITHUB_EVENT_PATH" },
-	{ name: "GITHUB_GRAPHQL_URL" },
-	{ name: "GITHUB_JOB" },
-	{ name: "GITHUB_OUTPUT" },
-	{ name: "GITHUB_PATH" },
-	{ name: "GITHUB_REF_NAME" },
-	{ name: "GITHUB_REF_TYPE" },
-	{ name: "GITHUB_REPOSITORY" },
-	{ name: "GITHUB_REPOSITORY_ID" },
-	{ name: "GITHUB_REPOSITORY_OWNER" },
-	{ name: "GITHUB_REPOSITORY_OWNER_ID" },
-	{ name: "GITHUB_RETENTION_DAYS" },
-	{ name: "GITHUB_RUN_ATTEMPT" },
-	{ name: "GITHUB_RUN_ID" },
-	{ name: "GITHUB_RUN_NUMBER" },
-	{ name: "GITHUB_SERVER_URL" },
-	{ name: "GITHUB_SHA" },
-	{ name: "GITHUB_STATE" },
-	{ name: "GITHUB_STEP_SUMMARY" },
-	{ name: "GITHUB_WORKFLOW" },
-	{ name: "GITHUB_WORKFLOW_REF" },
-	{ name: "GITHUB_WORKFLOW_SHA" },
-	{ name: "GITHUB_WORKSPACE" },
-	{ name: "RUNNER_ARCH" },
-	{ name: "RUNNER_NAME" },
-	{ name: "RUNNER_OS" },
-	{ name: "RUNNER_TEMP" },
-	{ name: "RUNNER_TOOL_CACHE" }
+const envsDefault: GitHubActionsDefaultEnvironmentVariableMeta[] = [
+	{ key: "CI", value: "true" },
+	{ key: "GITHUB_ACTION" },
+	{ key: "GITHUB_ACTIONS", value: "true" },
+	{ key: "GITHUB_ACTOR" },
+	{ key: "GITHUB_ACTOR_ID" },
+	{ key: "GITHUB_API_URL" },
+	{ key: "GITHUB_ENV" },
+	{ key: "GITHUB_EVENT_NAME" },
+	{ key: "GITHUB_EVENT_PATH" },
+	{ key: "GITHUB_GRAPHQL_URL" },
+	{ key: "GITHUB_JOB" },
+	{ key: "GITHUB_OUTPUT" },
+	{ key: "GITHUB_PATH" },
+	{ key: "GITHUB_REF_NAME" },
+	{ key: "GITHUB_REF_TYPE" },
+	{ key: "GITHUB_REPOSITORY" },
+	{ key: "GITHUB_REPOSITORY_ID" },
+	{ key: "GITHUB_REPOSITORY_OWNER" },
+	{ key: "GITHUB_REPOSITORY_OWNER_ID" },
+	{ key: "GITHUB_RETENTION_DAYS" },
+	{ key: "GITHUB_RUN_ATTEMPT" },
+	{ key: "GITHUB_RUN_ID" },
+	{ key: "GITHUB_RUN_NUMBER" },
+	{ key: "GITHUB_SERVER_URL" },
+	{ key: "GITHUB_SHA" },
+	{ key: "GITHUB_STATE" },
+	{ key: "GITHUB_STEP_SUMMARY" },
+	{ key: "GITHUB_WORKFLOW" },
+	{ key: "GITHUB_WORKFLOW_REF" },
+	{ key: "GITHUB_WORKFLOW_SHA" },
+	{ key: "GITHUB_WORKSPACE" },
+	{ key: "RUNNER_ARCH" },
+	{ key: "RUNNER_NAME" },
+	{ key: "RUNNER_OS" },
+	{ key: "RUNNER_TEMP" },
+	{ key: "RUNNER_TOOL_CACHE" }
 ];
 export interface GitHubActionsRunnerTestOptions {
 	/**
@@ -223,28 +223,28 @@ export interface GitHubActionsRunnerTestOptions {
  */
 export function isInRunner(options: GitHubActionsRunnerTestOptions = {}): boolean {
 	const { artifact = false, cache = false, oidc = false }: GitHubActionsRunnerTestOptions = options;
-	return !(
-		[
-			...defaultEnvironmentVariables,
-			{ name: "ACTIONS_RUNTIME_TOKEN", need: artifact || cache },
-			{ name: "ACTIONS_RUNTIME_URL", need: artifact },
-			{ name: "ACTIONS_CACHE_URL", need: cache },
-			{ name: "ACTIONS_ID_TOKEN_REQUEST_TOKEN", need: oidc },
-			{ name: "ACTIONS_ID_TOKEN_REQUEST_URL", need: oidc }
-		].filter(({ need }: GitHubActionsDefaultEnvironmentVariableMeta): boolean => {
-			return (need ?? true);
-		}).map<boolean>(({ name, value: valueExpected }: GitHubActionsDefaultEnvironmentVariableMeta): boolean => {
-			const valueCurrent: string | undefined = getEnv(name);
-			if (
-				typeof valueCurrent === "undefined" ||
-				(typeof valueExpected !== "undefined" && valueCurrent !== valueExpected)
-			) {
-				console.warn(`Unable to get the GitHub Actions resources, environment variable \`${name}\` is not defined, or not contain an expected value!`);
-				return false;
-			}
-			return true;
-		}).includes(false)
-	);
+	const envs: GitHubActionsDefaultEnvironmentVariableMeta[] = [
+		...envsDefault,
+		{ key: "ACTIONS_RESULTS_URL", need: artifact },
+		{ key: "ACTIONS_RUNTIME_TOKEN", need: artifact || cache },
+		{ key: "ACTIONS_RUNTIME_URL", need: artifact },
+		{ key: "ACTIONS_CACHE_URL", need: cache },
+		{ key: "ACTIONS_ID_TOKEN_REQUEST_TOKEN", need: oidc },
+		{ key: "ACTIONS_ID_TOKEN_REQUEST_URL", need: oidc }
+	];
+	return !(envs.filter(({ need }: GitHubActionsDefaultEnvironmentVariableMeta): boolean => {
+		return (need ?? true);
+	}).map<boolean>(({ key, value: valueExpected }: GitHubActionsDefaultEnvironmentVariableMeta): boolean => {
+		const valueCurrent: string | undefined = getEnv(key);
+		if (
+			typeof valueCurrent === "undefined" ||
+			(typeof valueExpected !== "undefined" && valueCurrent !== valueExpected)
+		) {
+			console.warn(`Unable to get the GitHub Actions resources, environment variable \`${key}\` is not defined, or not contain an expected value!`);
+			return false;
+		}
+		return true;
+	}).includes(false));
 }
 /**
  * Validate the current process whether is executing inside the GitHub Actions runner.

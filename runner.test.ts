@@ -69,5 +69,5 @@ Deno.test("Validate In Runner", {
 		env: true
 	}
 }, () => {
-	console.log(validateInRunner());
+	void validateInRunner();
 });
