@@ -3,6 +3,7 @@ import { EOL } from "node:os";
 import { isAbsolute as isPathAbsolute } from "node:path";
 import { getEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
+import { type KeyValueLike } from "../common.ts";
 const commandsFile: Set<string> = new Set<string>([
 	"GITHUB_ENV",
 	"GITHUB_OUTPUT",
@@ -152,11 +153,11 @@ export class GitHubActionsFileMapCommand extends GitHubActionsFileCommandBase {
 	append(key: string, value: string): this;
 	/**
 	 * Append pairs to the file map command.
-	 * @param {{ [key: string]: string; } | Map<string, string> | Record<string, string>} pairs Pairs of the file map command.
+	 * @param {KeyValueLike} pairs Pairs of the file map command.
 	 * @returns {this}
 	 */
-	append(pairs: { [key: string]: string; } | Map<string, string> | Record<string, string>): this;
-	append(param0: string | { [key: string]: string; } | Map<string, string> | Record<string, string>, param1?: string): this {
+	append(pairs: KeyValueLike): this;
+	append(param0: string | KeyValueLike, param1?: string): this {
 		const pairs: Map<string, string> = new Map<string, string>();
 		if (typeof param0 === "string") {
 			if (!isStringSingleLine(param0)) {

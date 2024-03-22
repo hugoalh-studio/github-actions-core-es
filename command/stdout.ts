@@ -1,4 +1,5 @@
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
+import { type KeyValueLike } from "../common.ts";
 const commandsStdOutCurrent: Set<string> = new Set<string>([
 	"add-mask",
 	"add-matcher",
@@ -53,11 +54,11 @@ export class GitHubActionsStdOutCommand {
 	/**
 	 * **\[🅰️ ADVANCED\]** Create new instance to communicate with the GitHub Actions runner via stdout command.
 	 * @param {string} command StdOut command.
-	 * @param {{ [key: string]: string; } | Map<string, string> | Record<string, string>} properties Properties of the stdout command.
+	 * @param {KeyValueLike} properties Properties of the stdout command.
 	 * @param {string} [message] Message of the stdout command.
 	 */
-	constructor(command: string, properties: { [key: string]: string; } | Map<string, string> | Record<string, string>, message?: string);
-	constructor(command: string, param1?: string | { [key: string]: string; } | Map<string, string> | Record<string, string>, param2?: string) {
+	constructor(command: string, properties: KeyValueLike, message?: string);
+	constructor(command: string, param1?: string | KeyValueLike, param2?: string) {
 		if (!(
 			commandsStdOutCurrent.has(command) ||
 			regexpCommandStdout.test(command)
@@ -103,10 +104,10 @@ export class GitHubActionsStdOutCommand {
 	}
 	/**
 	 * Set properties of the stdout command.
-	 * @param {{ [key: string]: string; } | Map<string, string> | Record<string, string>} properties Properties of the stdout command.
+	 * @param {KeyValueLike} properties Properties of the stdout command.
 	 * @returns {this}
 	 */
-	setProperties(properties: { [key: string]: string; } | Map<string, string> | Record<string, string>): this {
+	setProperties(properties: KeyValueLike): this {
 		for (const [key, value] of ((properties instanceof Map) ? properties.entries() : Object.entries(properties))) {
 			this.setProperty(key, value);
 		}

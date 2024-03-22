@@ -1,6 +1,7 @@
 import { getEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
 import { GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
+import { type KeyValueLike } from "./common.ts";
 /**
  * Get the raw value of a state.
  * 
@@ -64,11 +65,11 @@ export class GitHubActionsStateExportation {
 	set(key: string, value: string): this;
 	/**
 	 * Set the states.
-	 * @param {{ [key: string]: string; } | Map<string, string> | Record<string, string>} pairs Pairs of the state.
+	 * @param {KeyValueLike} pairs Pairs of the state.
 	 * @returns {this}
 	 */
-	set(pairs: { [key: string]: string; } | Map<string, string> | Record<string, string>): this;
-	set(param0: string | { [key: string]: string; } | Map<string, string> | Record<string, string>, param1?: string): this {
+	set(pairs: KeyValueLike): this;
+	set(param0: string | KeyValueLike, param1?: string): this {
 		const pairs: Map<string, string> = new Map<string, string>();
 		if (typeof param0 === "string") {
 			if (!isStringSingleLine(param0)) {
@@ -117,11 +118,11 @@ export function setState(key: string, value: string, options: GitHubActionsFileC
  * > - Environment Variable (`allow-env`)
  * > - File System - Read (`allow-read`)
  * > - File System - Write (`allow-write`)
- * @param {{ [key: string]: string; } | Map<string, string> | Record<string, string>} pairs Pairs of the state.
+ * @param {KeyValueLike} pairs Pairs of the state.
  * @param {GitHubActionsFileCommandOptions} [options={}] Options.
  * @returns {void}
  */
-export function setStates(pairs: { [key: string]: string; } | Map<string, string> | Record<string, string>, options: GitHubActionsFileCommandOptions = {}): void {
+export function setStates(pairs: KeyValueLike, options: GitHubActionsFileCommandOptions = {}): void {
 	const instance: GitHubActionsStateExportation = new GitHubActionsStateExportation();
 	instance.set(pairs);
 	if (options.optimize) {

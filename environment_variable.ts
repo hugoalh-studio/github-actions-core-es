@@ -2,6 +2,7 @@ import { delimiter as pathDelimiter } from "node:path";
 import { getEnv, setEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
 import { GitHubActionsFileLineCommand, GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
+import { type KeyValueLike } from "./common.ts";
 const regexpEnvironmentVariableKeyForbidden = /^(?:CI|PATH)$|^(?:ACTIONS|GITHUB|RUNNER)_/i;
 /**
  * Validate the item is a valid GitHub Actions environment variable key.
@@ -85,11 +86,11 @@ export class GitHubActionsEnvironmentVariableExportation {
 	set(key: string, value: string): this;
 	/**
 	 * Set the environment variables.
-	 * @param {{ [key: string]: string; } | Map<string, string> | Record<string, string>} pairs Pairs of the environment variable.
+	 * @param {KeyValueLike} pairs Pairs of the environment variable.
 	 * @returns {this}
 	 */
-	set(pairs: { [key: string]: string; } | Map<string, string> | Record<string, string>): this;
-	set(param0: string | { [key: string]: string; } | Map<string, string> | Record<string, string>, param1?: string): this {
+	set(pairs: KeyValueLike): this;
+	set(param0: string | KeyValueLike, param1?: string): this {
 		const pairs: Map<string, string> = new Map<string, string>();
 		if (typeof param0 === "string") {
 			validateEnvironmentVariableKey(param0);
@@ -141,11 +142,11 @@ export function setEnvironmentVariable(key: string, value: string, options: GitH
  * > - Environment Variable (`allow-env`)
  * > - File System - Read (`allow-read`)
  * > - File System - Write (`allow-write`)
- * @param {{ [key: string]: string; } | Map<string, string> | Record<string, string>} pairs Pairs of the environment variable.
+ * @param {KeyValueLike} pairs Pairs of the environment variable.
  * @param {GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions} [options={}] Options.
  * @returns {void}
  */
-export function setEnvironmentVariables(pairs: { [key: string]: string; } | Map<string, string> | Record<string, string>, options: GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions = {}): void {
+export function setEnvironmentVariables(pairs: KeyValueLike, options: GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions = {}): void {
 	const instance: GitHubActionsEnvironmentVariableExportation = new GitHubActionsEnvironmentVariableExportation(options);
 	instance.set(pairs);
 	if (options.optimize) {

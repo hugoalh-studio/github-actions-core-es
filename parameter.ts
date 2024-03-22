@@ -1,6 +1,7 @@
 import { getEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
 import { GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
+import { type KeyValueLike } from "./common.ts";
 export interface GitHubActionsInputOptions {
 	/**
 	 * Whether the input is require.
@@ -169,11 +170,11 @@ export class GitHubActionsOutput {
 	set(key: string, value: string): this;
 	/**
 	 * Set the outputs.
-	 * @param {{ [key: string]: string; } | Map<string, string> | Record<string, string>} pairs Pairs of the output.
+	 * @param {KeyValueLike} pairs Pairs of the output.
 	 * @returns {this}
 	 */
-	set(pairs: { [key: string]: string; } | Map<string, string> | Record<string, string>): this;
-	set(param0: string | { [key: string]: string; } | Map<string, string> | Record<string, string>, param1?: string): this {
+	set(pairs: KeyValueLike): this;
+	set(param0: string | KeyValueLike, param1?: string): this {
 		const pairs: Map<string, string> = new Map<string, string>();
 		if (typeof param0 === "string") {
 			if (!isStringSingleLine(param0)) {
@@ -222,11 +223,11 @@ export function setOutput(key: string, value: string, options: GitHubActionsFile
  * > - Environment Variable (`allow-env`)
  * > - File System - Read (`allow-read`)
  * > - File System - Write (`allow-write`)
- * @param {{ [key: string]: string; } | Map<string, string> | Record<string, string>} pairs Pairs of the output.
+ * @param {KeyValueLike} pairs Pairs of the output.
  * @param {GitHubActionsFileCommandOptions} [options={}] Options.
  * @returns {void}
  */
-export function setOutputs(pairs: { [key: string]: string; } | Map<string, string> | Record<string, string>, options: GitHubActionsFileCommandOptions={}): void{
+export function setOutputs(pairs: KeyValueLike, options: GitHubActionsFileCommandOptions={}): void{
 	const instance: GitHubActionsOutput = new GitHubActionsOutput();
 	instance.set(pairs);
 	if (options.optimize) {
