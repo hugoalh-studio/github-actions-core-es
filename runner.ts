@@ -1,3 +1,4 @@
+import { isAbsolute as isPathAbsolute } from "node:path";
 import { getEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
 const runnerArchitectures = [
 	"ARM",
@@ -111,6 +112,9 @@ export function getRunnerTempPath(): string {
 	if (typeof value === "undefined") {
 		throw new ReferenceError(`Unable to get the GitHub Actions runner TEMP path, environment variable \`RUNNER_TEMP\` is not defined!`);
 	}
+	if (!isPathAbsolute(value)) {
+		throw new Error(`\`${value}\` (environment path \`RUNNER_TEMP\`) is not a valid absolute path!`);
+	}
 	return value;
 }
 /**
@@ -142,6 +146,9 @@ export function getRunnerWorkspacePath(): string {
 	const value: string | undefined = getEnv("GITHUB_WORKSPACE");
 	if (typeof value === "undefined") {
 		throw new ReferenceError(`Unable to get the GitHub Actions runner workspace path, environment variable \`GITHUB_WORKSPACE\` is not defined!`);
+	}
+	if (!isPathAbsolute(value)) {
+		throw new Error(`\`${value}\` (environment path \`GITHUB_WORKSPACE\`) is not a valid absolute path!`);
 	}
 	return value;
 }
