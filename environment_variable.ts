@@ -153,7 +153,7 @@ export function setEnvironmentVariables(pairs: { [key: string]: string; } | Map<
 	}
 }
 /**
- * **\[🅰️ ADVANCED\]** Handle the exportation of PATH in the GitHub Actions runner.
+ * **\[🅰️ ADVANCED\]** Handle the exportation of `PATH` in the GitHub Actions runner.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -166,7 +166,7 @@ export class GitHubActionsPATHExportation {
 	#scopeCurrent: boolean;
 	#scopeSubsequent: boolean;
 	/**
-	 * **\[🅰️ ADVANCED\]** Create new instance to handle the exportation of PATH in the GitHub Actions runner.
+	 * **\[🅰️ ADVANCED\]** Create new instance to handle the exportation of `PATH` in the GitHub Actions runner.
 	 * 
 	 * > **🛡️ Require Permission**
 	 * >
@@ -180,7 +180,7 @@ export class GitHubActionsPATHExportation {
 		this.#scopeSubsequent = options.scopeSubsequent ?? true;
 	}
 	/**
-	 * Add the PATH.
+	 * Add the `PATH`.
 	 * @param {...string} paths
 	 * @returns {this}
 	 */
@@ -209,7 +209,7 @@ export class GitHubActionsPATHExportation {
 		return this;
 	}
 	/**
-	 * Clear the PATH for all of the subsequent steps which set in the current step.
+	 * Clear the `PATH` for all of the subsequent steps which set in the current step.
 	 * @returns {this}
 	 */
 	clearSubsequent(): this {
@@ -219,7 +219,7 @@ export class GitHubActionsPATHExportation {
 		return this;
 	}
 	/**
-	 * Optimize the PATH for all of the subsequent steps which set in the current step to reduce size whenever possible.
+	 * Optimize the `PATH` for all of the subsequent steps which set in the current step to reduce size whenever possible.
 	 * @returns {this}
 	 */
 	optimizeSubsequent(): this {
@@ -230,7 +230,7 @@ export class GitHubActionsPATHExportation {
 	}
 }
 /**
- * Add the PATH.
+ * Add the `PATH`.
  * 
  * > **🛡️ Require Permission**
  * >

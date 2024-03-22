@@ -41,6 +41,9 @@ export function exitLogGroup(): void {
 export {
 	exitLogGroup as endLogGroup
 };
+/**
+ * GitHub Actions annotation type.
+ */
 export enum GitHubActionsAnnotationType {
 	error = "error",
 	Error = "error",
@@ -53,6 +56,9 @@ export enum GitHubActionsAnnotationType {
 	warning = "warning",
 	Warning = "warning"
 }
+/**
+ * GitHub Actions annotation properties.
+ */
 export interface GitHubActionsAnnotationProperties {
 	/**
 	 * Path of the issue file of the annotation.

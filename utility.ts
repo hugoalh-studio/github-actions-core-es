@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { isAbsolute as isPathAbsolute } from "node:path";
 import { getEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
-import { type JSONObject } from "https://raw.githubusercontent.com/hugoalh-studio/is-json-ts/v1.0.0/mod.ts";
+import { type JSONValueExtend } from "https://raw.githubusercontent.com/hugoalh-studio/is-json-ts/v1.0.0/mod.ts";
 /**
  * Get the URL of the GitHub API.
  * 
@@ -77,7 +77,7 @@ export function getRunnerArchitecture(): GitHubActionsRunnerArchitecture {
 }
 export {
 	getRunnerArchitecture as getRunnerArch
-}
+};
 /**
  * Get the debug status of the GitHub Actions runner.
  * 
@@ -479,7 +479,51 @@ export function getWorkflowRunURL(): URL {
 	if (typeof repository === "undefined") {
 		throw new ReferenceError(`Unable to get the GitHub Actions workflow run URI, environment variable \`GITHUB_REPOSITORY\` is not defined!`);
 	}
-	return new URL(`${getGitHubServerURL().toString()}/${repository}/actions/runs/${getWorkflowRunID()}`);
+	const serverURLString: string = getGitHubServerURL().toString();
+	return new URL(`${serverURLString}${serverURLString.endsWith("/") ? "" : "/"}${repository}/actions/runs/${getWorkflowRunID()}`);
+}
+export interface GitHubWebhookPayloadRepository {
+	full_name?: string;
+	html_url?: string;
+	name: string;
+	owner: {
+		login: string;
+		name?: string;
+		[key: string]: JSONValueExtend | undefined;
+	};
+	[key: string]: JSONValueExtend | undefined;
+}
+/**
+ * GitHub Actions webhook event payload.
+ */
+export interface GitHubActionsWebhookEventPayload {
+	action?: string;
+	comment?: {
+		id: number;
+		[key: string]: JSONValueExtend | undefined;
+	};
+	installation?: {
+		id: number;
+		[key: string]: JSONValueExtend | undefined;
+	};
+	issue?: {
+		number: number;
+		html_url?: string;
+		body?: string;
+		[key: string]: JSONValueExtend | undefined;
+	};
+	pull_request?: {
+		number: number;
+		html_url?: string;
+		body?: string;
+		[key: string]: JSONValueExtend | undefined;
+	};
+	repository?: GitHubWebhookPayloadRepository;
+	sender?: {
+		type: string;
+		[key: string]: JSONValueExtend | undefined;
+	};
+	[key: string]: JSONValueExtend | undefined;
 }
 /**
  * Get the webhook event payload of the workflow run.
@@ -488,9 +532,9 @@ export function getWorkflowRunURL(): URL {
  * >
  * > - Environment Variable (`allow-env`)
  * > - File System - Read (`allow-read`)
- * @returns {JSONObject} Webhook event payload of the workflow run.
+ * @returns {GitHubActionsWebhookEventPayload} Webhook event payload of the workflow run.
  */
-export function getWorkflowRunWebhookEventPayload(): JSONObject {
+export function getWorkflowRunWebhookEventPayload(): GitHubActionsWebhookEventPayload {
 	const path: string | undefined = getEnv("GITHUB_EVENT_PATH");
 	if (typeof path === "undefined") {
 		throw new ReferenceError(`Unable to get the GitHub Actions workflow run webhook event payload, environment variable \`GITHUB_EVENT_PATH\` is not defined!`);
@@ -498,7 +542,7 @@ export function getWorkflowRunWebhookEventPayload(): JSONObject {
 	if (!isPathAbsolute(path)) {
 		throw new ReferenceError(`Unable to get the GitHub Actions workflow run webhook event payload, \`${path}\` (environment variable \`GITHUB_EVENT_PATH\`) is not a valid absolute path!`);
 	}
-	return JSON.parse(readFileSync(path, { encoding: "utf-8" })) as JSONObject;
+	return JSON.parse(readFileSync(path, { encoding: "utf-8" })) as GitHubActionsWebhookEventPayload;
 }
 /**
  * Get the SHA of the workflow.
