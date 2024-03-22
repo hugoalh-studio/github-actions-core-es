@@ -136,7 +136,7 @@ This is a partial refactor of [the official toolkit][official-toolkit], not all 
 - `enableProcessStdOutCommand`
 - `endLogGroup`
 - `getGitHubAPIURL`
-- `getGitHubGraphQLURL`
+- `getGitHubGraphQLAPIURL`
 - `getGitHubServerURL`
 - `getInput`
 - `getInputBigInt`
@@ -148,10 +148,17 @@ This is a partial refactor of [the official toolkit][official-toolkit], not all 
 - `getRunnerDebugStatus`
 - `getRunnerName`
 - `getRunnerOS`
+- `getRunnerTempPath`
+- `getRunnerToolCachePath`
+- `getRunnerWorkspacePath`
 - `getState`
 - `getStateRaw`
 - `getWorkflowName`
 - `getWorkflowReferencePath`
+- `getWorkflowRepository`
+- `getWorkflowRepositoryID`
+- `getWorkflowRepositoryOwner`
+- `getWorkflowRepositoryOwnerID`
 - `getWorkflowRunActionID`
 - `getWorkflowRunActorID`
 - `getWorkflowRunActorName`
@@ -161,6 +168,7 @@ This is a partial refactor of [the official toolkit][official-toolkit], not all 
 - `getWorkflowRunJobID`
 - `getWorkflowRunNumber`
 - `getWorkflowRunReference`
+- `getWorkflowRunRetentionDays`
 - `getWorkflowRunRunAttempt`
 - `getWorkflowRunURL`
 - `getWorkflowRunWebhookEventPayload`
@@ -190,8 +198,8 @@ This is a partial refactor of [the official toolkit][official-toolkit], not all 
 - `GitHubActionsFileCommandOptions`
 - `GitHubActionsInputOptions`
 - `GitHubActionsRunnerArchitecture`
-- `GitHubActionsRunnerMachineTestOptions`
 - `GitHubActionsRunnerOS`
+- `GitHubActionsRunnerTestOptions`
 - `GitHubReferenceMeta`
 - `GitHubReferenceType`
 

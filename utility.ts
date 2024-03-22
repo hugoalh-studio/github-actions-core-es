@@ -17,17 +17,17 @@ export function getGitHubAPIURL(): URL {
 	return new URL(getEnv("GITHUB_API_URL") ?? "https://api.github.com");
 }
 /**
- * Get the URL of the GitHub GraphQL.
+ * Get the URL of the GitHub GraphQL API.
  * 
  * > **🛡️ Require Permission**
  * >
  * > - Environment Variable (`allow-env`)
- * @returns {URL} URL of the GitHub GraphQL.
+ * @returns {URL} URL of the GitHub GraphQL API.
  * @example
- * getGitHubGraphQLURL();
+ * getGitHubGraphQLAPIURL();
  * //=> https://api.github.com/graphql
  */
-export function getGitHubGraphQLURL(): URL {
+export function getGitHubGraphQLAPIURL(): URL {
 	return new URL(getEnv("GITHUB_GRAPHQL_URL") ?? "https://api.github.com/graphql");
 }
 /**
@@ -44,104 +44,8 @@ export function getGitHubGraphQLURL(): URL {
 export function getGitHubServerURL(): URL {
 	return new URL(getEnv("GITHUB_SERVER_URL") ?? "https://github.com");
 }
-const runnerArchitectures = [
-	"ARM",
-	"ARM64",
-	"X64",
-	"X86"
-] as const;
 /**
- * GitHub Actions runner architecture.
- */
-export type GitHubActionsRunnerArchitecture = typeof runnerArchitectures[number];
-/**
- * Get the architecture of the GitHub Actions runner.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * @returns {GitHubActionsRunnerArchitecture} Architecture of the GitHub Actions runner.
- * @example
- * getRunnerArchitecture();
- * //=> "X64"
- */
-export function getRunnerArchitecture(): GitHubActionsRunnerArchitecture {
-	const value: string | undefined = getEnv("RUNNER_ARCH");
-	if (typeof value === "undefined") {
-		throw new ReferenceError(`Unable to get the GitHub Actions runner architecture, environment variable \`RUNNER_ARCH\` is not defined!`);
-	}
-	if (!runnerArchitectures.includes(value as GitHubActionsRunnerArchitecture)) {
-		throw new Error(`\`${value}\` is not a known GitHub Actions runner architecture!`);
-	}
-	return value as GitHubActionsRunnerArchitecture;
-}
-export {
-	getRunnerArchitecture as getRunnerArch
-};
-/**
- * Get the debug status of the GitHub Actions runner.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * @returns {boolean} Debug status.
- */
-export function getRunnerDebugStatus(): boolean {
-	return (getEnv("RUNNER_DEBUG") === "1");
-}
-export {
-	getRunnerDebugStatus as isRunnerDebug
-};
-/**
- * Get the name of the GitHub Actions runner.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * @returns {string} Name of the GitHub Actions runner.
- * @example
- * getRunnerName();
- * //=> "Hosted Agent"
- */
-export function getRunnerName(): string {
-	const value: string | undefined = getEnv("RUNNER_NAME");
-	if (typeof value === "undefined") {
-		throw new ReferenceError(`Unable to get the GitHub Actions runner name, environment variable \`RUNNER_NAME\` is not defined!`);
-	}
-	return value;
-}
-const runnerOSes = [
-	"Linux",
-	"macOS",
-	"Windows"
-] as const;
-/**
- * GitHub Actions runner OS.
- */
-export type GitHubActionsRunnerOS = typeof runnerOSes[number];
-/**
- * Get the OS of the GitHub Actions runner.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * @returns {GitHubActionsRunnerOS} OS of the GitHub Actions runner.
- * @example
- * getRunnerOS();
- * //=> "Windows"
- */
-export function getRunnerOS(): GitHubActionsRunnerOS {
-	const value: string | undefined = getEnv("RUNNER_OS");
-	if (typeof value === "undefined") {
-		throw new ReferenceError(`Unable to get the GitHub Actions runner OS, environment variable \`RUNNER_OS\` is not defined!`);
-	}
-	if (!runnerOSes.includes(value as GitHubActionsRunnerOS)) {
-		throw new Error(`\`${value}\` is not a known GitHub Actions runner OS!`);
-	}
-	return value as GitHubActionsRunnerOS;
-}
-/**
- * Get the name of the workflow; If the workflow file does not specify a name, the value is the full path of the workflow file in the repository.
+ * Get the name of the workflow; If the workflow file does not specify a name, then the value is the full path of the workflow file in the repository.
  * 
  * > **🛡️ Require Permission**
  * >
@@ -175,6 +79,78 @@ export function getWorkflowReferencePath(): string {
 		throw new ReferenceError(`Unable to get the GitHub Actions workflow reference path, environment variable \`GITHUB_WORKFLOW_REF\` is not defined!`);
 	}
 	return value;
+}
+/**
+ * Get the repository of the workflow.
+ * 
+ * > **🛡️ Require Permission**
+ * >
+ * > - Environment Variable (`allow-env`)
+ * @returns {string} Repository of the workflow.
+ * @example
+ * getWorkflowRepository();
+ * //=> "octocat/Hello-World"
+ */
+export function getWorkflowRepository(): string {
+	const value: string | undefined = getEnv("GITHUB_REPOSITORY");
+	if (typeof value === "undefined") {
+		throw new ReferenceError(`Unable to get the GitHub Actions workflow repository, environment variable \`GITHUB_REPOSITORY\` is not defined!`);
+	}
+	return value;
+}
+/**
+ * Get the repository ID of the workflow.
+ * 
+ * > **🛡️ Require Permission**
+ * >
+ * > - Environment Variable (`allow-env`)
+ * @returns {number} Repository ID of the workflow.
+ * @example
+ * getWorkflowRepositoryID();
+ * //=> 123456789
+ */
+export function getWorkflowRepositoryID(): number {
+	const value: string | undefined = getEnv("GITHUB_REPOSITORY_ID");
+	if (typeof value === "undefined") {
+		throw new ReferenceError(`Unable to get the GitHub Actions workflow repository ID, environment variable \`GITHUB_REPOSITORY_ID\` is not defined!`);
+	}
+	return Number.parseInt(value, 10);
+}
+/**
+ * Get the repository owner of the workflow.
+ * 
+ * > **🛡️ Require Permission**
+ * >
+ * > - Environment Variable (`allow-env`)
+ * @returns {string} Repository owner of the workflow.
+ * @example
+ * getWorkflowRepositoryOwner();
+ * //=> "octocat"
+ */
+export function getWorkflowRepositoryOwner(): string {
+	const value: string | undefined = getEnv("GITHUB_REPOSITORY_OWNER");
+	if (typeof value === "undefined") {
+		throw new ReferenceError(`Unable to get the GitHub Actions workflow repository owner, environment variable \`GITHUB_REPOSITORY_OWNER\` is not defined!`);
+	}
+	return value;
+}
+/**
+ * Get the repository owner ID of the workflow.
+ * 
+ * > **🛡️ Require Permission**
+ * >
+ * > - Environment Variable (`allow-env`)
+ * @returns {number} Repository owner ID of the workflow.
+ * @example
+ * getWorkflowRepositoryOwnerID();
+ * //=> 1234567
+ */
+export function getWorkflowRepositoryOwnerID(): number {
+	const value: string | undefined = getEnv("GITHUB_REPOSITORY_OWNER_ID");
+	if (typeof value === "undefined") {
+		throw new ReferenceError(`Unable to get the GitHub Actions workflow repository owner ID, environment variable \`GITHUB_REPOSITORY_OWNER_ID\` is not defined!`);
+	}
+	return Number.parseInt(value, 10);
 }
 /**
  * Get the action ID of the workflow run.
@@ -213,12 +189,12 @@ export function getWorkflowRunActorID(): number {
 	return Number.parseInt(value, 10);
 }
 /**
- * Get the actor name of the workflow run.
+ * Get the actor name that initiate the workflow run.
  * 
  * > **🛡️ Require Permission**
  * >
  * > - Environment Variable (`allow-env`)
- * @returns {string} Actor name of the workflow run.
+ * @returns {string} Actor name that initiate the workflow run.
  * @example
  * getWorkflowRunActorName();
  * //=> "octocat"
@@ -231,12 +207,12 @@ export function getWorkflowRunActorName(): string {
 	return value;
 }
 /**
- * Get the commit SHA that triggered the workflow run.
+ * Get the commit SHA that trigger the workflow run.
  * 
  * > **🛡️ Require Permission**
  * >
  * > - Environment Variable (`allow-env`)
- * @returns {string} Commit SHA of the workflow run.
+ * @returns {string} Commit SHA that trigger the workflow run.
  * @example
  * getWorkflowRunCommitSHA();
  * //=> "ffac537e6cbbf934b08745a378932722df287a53"
@@ -446,6 +422,24 @@ export function getWorkflowRunReference(): GitHubReferenceMeta {
 	};
 }
 /**
+ * Get the retention days of the workflow run.
+ * 
+ * > **🛡️ Require Permission**
+ * >
+ * > - Environment Variable (`allow-env`)
+ * @returns {number} Retention days of the workflow run.
+ * @example
+ * getWorkflowRunRetentionDays();
+ * //=> 90
+ */
+export function getWorkflowRunRetentionDays(): number {
+	const value: string | undefined = getEnv("GITHUB_RETENTION_DAYS");
+	if (typeof value === "undefined") {
+		throw new ReferenceError(`Unable to get the GitHub Actions workflow run retention days, environment variable \`GITHUB_RETENTION_DAYS\` is not defined!`);
+	}
+	return Number.parseInt(value, 10);
+}
+/**
  * Get the run attempt of the workflow run; This is a unique number for each attempt of a particular workflow run in a repository, begins at `1` for the workflow run's first attempt, and increments with each re-run.
  * 
  * > **🛡️ Require Permission**
@@ -558,121 +552,4 @@ export function getWorkflowSHA(): string {
 		throw new ReferenceError(`Unable to get the GitHub Actions workflow SHA, environment variable \`GITHUB_WORKFLOW_SHA\` is not defined!`);
 	}
 	return value;
-}
-interface GitHubActionsDefaultEnvironmentVariableMeta {
-	name: string;
-	need?: boolean;
-	value?: string;
-}
-const defaultEnvironmentVariables: GitHubActionsDefaultEnvironmentVariableMeta[] = [
-	{ name: "CI", value: "true" },
-	{ name: "GITHUB_ACTION" },
-	{ name: "GITHUB_ACTIONS", value: "true" },
-	{ name: "GITHUB_ACTOR" },
-	{ name: "GITHUB_ACTOR_ID" },
-	{ name: "GITHUB_API_URL" },
-	{ name: "GITHUB_ENV" },
-	{ name: "GITHUB_EVENT_NAME" },
-	{ name: "GITHUB_EVENT_PATH" },
-	{ name: "GITHUB_GRAPHQL_URL" },
-	{ name: "GITHUB_JOB" },
-	{ name: "GITHUB_OUTPUT" },
-	{ name: "GITHUB_PATH" },
-	{ name: "GITHUB_REF_NAME" },
-	{ name: "GITHUB_REF_TYPE" },
-	{ name: "GITHUB_REPOSITORY" },
-	{ name: "GITHUB_REPOSITORY_ID" },
-	{ name: "GITHUB_REPOSITORY_OWNER" },
-	{ name: "GITHUB_REPOSITORY_OWNER_ID" },
-	{ name: "GITHUB_RETENTION_DAYS" },
-	{ name: "GITHUB_RUN_ATTEMPT" },
-	{ name: "GITHUB_RUN_ID" },
-	{ name: "GITHUB_RUN_NUMBER" },
-	{ name: "GITHUB_SERVER_URL" },
-	{ name: "GITHUB_SHA" },
-	{ name: "GITHUB_STATE" },
-	{ name: "GITHUB_STEP_SUMMARY" },
-	{ name: "GITHUB_WORKFLOW" },
-	{ name: "GITHUB_WORKFLOW_REF" },
-	{ name: "GITHUB_WORKFLOW_SHA" },
-	{ name: "GITHUB_WORKSPACE" },
-	{ name: "RUNNER_ARCH" },
-	{ name: "RUNNER_NAME" },
-	{ name: "RUNNER_OS" },
-	{ name: "RUNNER_TEMP" },
-	{ name: "RUNNER_TOOL_CACHE" }
-];
-export interface GitHubActionsRunnerMachineTestOptions {
-	/**
-	 * Also test whether have artifact resources.
-	 * @default false
-	 */
-	artifact?: boolean;
-	/**
-	 * Also test whether have cache resources.
-	 * @default false
-	 */
-	cache?: boolean;
-	/**
-	 * Also test whether have OpenID Connect (OIDC) resources.
-	 * @default false
-	 */
-	oidc?: boolean;
-	/**
-	 * Also test whether have tool cache resources.
-	 * @default false
-	 */
-	toolCache?: boolean;
-}
-/**
- * Test the current process whether is executing inside the GitHub Actions runner.
- * 
- * If this test is mandatory, use function {@linkcode validateInRunner} instead.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * @param {GitHubActionsRunnerMachineTestOptions} [options={}] Options.
- * @returns {boolean} Test result.
- */
-export function isInRunner(options: GitHubActionsRunnerMachineTestOptions = {}): boolean {
-	const { artifact = false, cache = false, oidc = false }: GitHubActionsRunnerMachineTestOptions = options;
-	return !(
-		[
-			...defaultEnvironmentVariables,
-			{ name: "ACTIONS_RUNTIME_TOKEN", need: artifact || cache },
-			{ name: "ACTIONS_RUNTIME_URL", need: artifact },
-			{ name: "ACTIONS_CACHE_URL", need: cache },
-			{ name: "ACTIONS_ID_TOKEN_REQUEST_TOKEN", need: oidc },
-			{ name: "ACTIONS_ID_TOKEN_REQUEST_URL", need: oidc }
-		].filter(({ need }: GitHubActionsDefaultEnvironmentVariableMeta): boolean => {
-			return (need ?? true);
-		}).map<boolean>(({ name, value: valueExpected }: GitHubActionsDefaultEnvironmentVariableMeta): boolean => {
-			const valueCurrent: string | undefined = getEnv(name);
-			if (
-				typeof valueCurrent === "undefined" ||
-				(typeof valueExpected !== "undefined" && valueCurrent !== valueExpected)
-			) {
-				console.warn(`Unable to get the GitHub Actions resources, environment variable \`${name}\` is not defined, or not contain an expected value!`);
-				return false;
-			}
-			return true;
-		}).includes(false)
-	);
-}
-/**
- * Validate the current process whether is executing inside the GitHub Actions runner.
- * 
- * If this test is optional, use function {@linkcode isInRunner} instead.
- * 
- * > **🛡️ Require Permission**
- * >
- * > - Environment Variable (`allow-env`)
- * @param {GitHubActionsRunnerMachineTestOptions} [options={}] Options.
- * @returns {void}
- */
-export function validateInRunner(options: GitHubActionsRunnerMachineTestOptions = {}): void {
-	if (!isInRunner(options)) {
-		throw new Error("This process requires to invoke inside the GitHub Actions environment!");
-	}
 }

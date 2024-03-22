@@ -9,6 +9,7 @@
 		"./log": "./log.ts",
 		"./parameter": "./parameter.ts",
 		"./problem-matcher": "./problem_matcher.ts",
+		"./runner": "./runner.ts",
 		"./state": "./state.ts",
 		"./summary": "./summary.ts",
 		"./utility": "./utility.ts",
