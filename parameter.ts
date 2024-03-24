@@ -1,4 +1,4 @@
-import { getEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
 import { GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
 import { type KeyValueLike } from "./common.ts";
@@ -22,7 +22,7 @@ export function getInputRaw(key: string): string | undefined {
 	if (!isStringSingleLine(key)) {
 		throw new SyntaxError(`\`${key}\` is not a valid GitHub Actions input key!`);
 	}
-	return getEnv(`INPUT_${key.replaceAll(" ", "_").toUpperCase()}`);
+	return env.get(`INPUT_${key.replaceAll(" ", "_").toUpperCase()}`);
 }
 /**
  * Get the value of an input.

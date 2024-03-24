@@ -1,7 +1,7 @@
 import { appendFileSync, writeFileSync } from "node:fs";
 import { EOL } from "node:os";
 import { isAbsolute as isPathAbsolute } from "node:path";
-import { getEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
 /**
  * **\[🧪 EXPERIMENTAL\]** Handle the summary in the GitHub Actions runner.
  * 
@@ -23,7 +23,7 @@ export class GitHubActionsSummary {
 	 * > - File System - Write (`allow-write`)
 	 */
 	constructor() {
-		const commandPath: string = getEnv("GITHUB_STEP_SUMMARY") ?? "";
+		const commandPath: string = env.get("GITHUB_STEP_SUMMARY") ?? "";
 		if (commandPath.length === 0) {
 			throw new Error(`Environment path \`GITHUB_STEP_SUMMARY\` is not defined!`);
 		}

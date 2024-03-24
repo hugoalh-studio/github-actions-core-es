@@ -1,7 +1,7 @@
 import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
 import { EOL } from "node:os";
 import { isAbsolute as isPathAbsolute } from "node:path";
-import { getEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
 import { type KeyValueLike } from "../common.ts";
 const commandsFile: Set<string> = new Set<string>([
@@ -41,7 +41,7 @@ class GitHubActionsFileCommandBase {
 		)) {
 			throw new SyntaxError(`\`${command}\` is not a valid GitHub Actions file command!`);
 		}
-		const commandPath: string = getEnv(command) ?? "";
+		const commandPath: string = env.get(command) ?? "";
 		if (commandPath.length === 0) {
 			throw new Error(`Environment path \`${command}\` is not defined!`);
 		}

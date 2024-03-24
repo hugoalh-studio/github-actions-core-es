@@ -1,4 +1,4 @@
-import { getEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
 import { GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
 import { type KeyValueLike } from "./common.ts";
@@ -15,7 +15,7 @@ export function getStateRaw(key: string): string | undefined {
 	if (!isStringSingleLine(key)) {
 		throw new SyntaxError(`\`${key}\` is not a valid GitHub Actions state key!`);
 	}
-	return getEnv(`STATE_${key.replaceAll(" ", "_").toUpperCase()}`);
+	return env.get(`STATE_${key.replaceAll(" ", "_").toUpperCase()}`);
 }
 /**
  * Get the value of a state.

@@ -1,5 +1,5 @@
-import { delimiter as pathDelimiter } from "node:path";
-import { getEnv, setEnv } from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.0.1/mod.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
+import envPath from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/path.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
 import { GitHubActionsFileLineCommand, GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
 import { type KeyValueLike } from "./common.ts";
@@ -104,7 +104,7 @@ export class GitHubActionsEnvironmentVariableExportation {
 		if (pairs.size > 0) {
 			if (this.#scopeCurrent) {
 				for (const [key, value] of pairs.values()) {
-					setEnv(key, value);
+					env.set(key, value);
 				}
 			}
 			if (this.#scopeSubsequent) {
@@ -193,15 +193,7 @@ export class GitHubActionsPATHExportation {
 		});
 		if (paths.length > 0) {
 			if (this.#scopeCurrent) {
-				const context: Set<string> = new Set<string>((getEnv("PATH") ?? "").split(pathDelimiter).map<string>((value: string): string => {
-					return value.trim();
-				}).filter((value: string): boolean => {
-					return (value.length > 0);
-				}));
-				for (const path of paths) {
-					context.add(path);
-				}
-				setEnv("PATH", Array.from<string>(context.values()).join(pathDelimiter));
+				envPath.add(...paths);
 			}
 			if (this.#scopeSubsequent) {
 				this.#command.append(...paths);
