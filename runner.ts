@@ -192,8 +192,7 @@ const envsDefault: GitHubActionsDefaultEnvironmentVariableMeta[] = [
 	{ key: "RUNNER_ARCH" },
 	{ key: "RUNNER_NAME" },
 	{ key: "RUNNER_OS" },
-	{ key: "RUNNER_TEMP" },
-	{ key: "RUNNER_TOOL_CACHE" }
+	{ key: "RUNNER_TEMP" }
 ];
 export interface GitHubActionsRunnerTestOptions {
 	/**
@@ -229,7 +228,7 @@ export interface GitHubActionsRunnerTestOptions {
  * @returns {boolean} Test result.
  */
 export function isInRunner(options: GitHubActionsRunnerTestOptions = {}): boolean {
-	const { artifact = false, cache = false, oidc = false }: GitHubActionsRunnerTestOptions = options;
+	const { artifact = false, cache = false, oidc = false, toolCache = false }: GitHubActionsRunnerTestOptions = options;
 	const envs: GitHubActionsDefaultEnvironmentVariableMeta[] = [
 		...envsDefault,
 		{ key: "ACTIONS_RESULTS_URL", need: artifact },
@@ -237,7 +236,8 @@ export function isInRunner(options: GitHubActionsRunnerTestOptions = {}): boolea
 		{ key: "ACTIONS_RUNTIME_URL", need: artifact },
 		{ key: "ACTIONS_CACHE_URL", need: cache },
 		{ key: "ACTIONS_ID_TOKEN_REQUEST_TOKEN", need: oidc },
-		{ key: "ACTIONS_ID_TOKEN_REQUEST_URL", need: oidc }
+		{ key: "ACTIONS_ID_TOKEN_REQUEST_URL", need: oidc },
+		{ key: "RUNNER_TOOL_CACHE", need: toolCache }
 	];
 	return !(envs.filter(({ need }: GitHubActionsDefaultEnvironmentVariableMeta): boolean => {
 		return (need ?? true);
