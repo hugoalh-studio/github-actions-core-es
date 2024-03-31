@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { isAbsolute as isPathAbsolute } from "node:path";
 import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
-import { type JSONValueExtend } from "https://raw.githubusercontent.com/hugoalh-studio/is-json-ts/v1.0.0/mod.ts";
+import type { JSONObjectExtend, JSONValueExtend } from "https://raw.githubusercontent.com/hugoalh-studio/is-json-ts/v1.0.1/mod.ts";
 /**
  * Get the URL of the GitHub API.
  * 
@@ -478,48 +478,48 @@ export function getWorkflowRunURL(): URL {
 	const serverURLString: string = getGitHubServerURL().toString();
 	return new URL(`${serverURLString}${serverURLString.endsWith("/") ? "" : "/"}${repository}/actions/runs/${getWorkflowRunID()}`);
 }
-export interface GitHubActionsWebhookEventPayloadRepository {
+export interface GitHubActionsWebhookEventPayloadRepository extends JSONObjectExtend {
 	full_name?: string;
 	html_url?: string;
 	name: string;
 	owner: {
 		login: string;
 		name?: string;
-		[key: string]: JSONValueExtend | undefined;
+		[key: string]: JSONValueExtend;
 	};
-	[key: string]: JSONValueExtend | undefined;
+	[key: string]: JSONValueExtend;
 }
 /**
  * GitHub Actions webhook event payload.
  */
-export interface GitHubActionsWebhookEventPayload {
+export interface GitHubActionsWebhookEventPayload extends JSONObjectExtend {
 	action?: string;
 	comment?: {
 		id: number;
-		[key: string]: JSONValueExtend | undefined;
+		[key: string]: JSONValueExtend;
 	};
 	installation?: {
 		id: number;
-		[key: string]: JSONValueExtend | undefined;
+		[key: string]: JSONValueExtend;
 	};
 	issue?: {
 		number: number;
 		html_url?: string;
 		body?: string;
-		[key: string]: JSONValueExtend | undefined;
+		[key: string]: JSONValueExtend;
 	};
 	pull_request?: {
 		number: number;
 		html_url?: string;
 		body?: string;
-		[key: string]: JSONValueExtend | undefined;
+		[key: string]: JSONValueExtend;
 	};
 	repository?: GitHubActionsWebhookEventPayloadRepository;
 	sender?: {
 		type: string;
-		[key: string]: JSONValueExtend | undefined;
+		[key: string]: JSONValueExtend;
 	};
-	[key: string]: JSONValueExtend | undefined;
+	[key: string]: JSONValueExtend;
 }
 /**
  * Get the webhook event payload of the workflow run.
