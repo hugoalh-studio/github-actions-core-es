@@ -1,7 +1,7 @@
 import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
 import { GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
-import { type KeyValueLike } from "./common.ts";
+import type { KeyValueLike } from "./common.ts";
 export interface GitHubActionsInputOptions {
 	/**
 	 * Whether the input is require.

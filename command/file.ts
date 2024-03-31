@@ -3,7 +3,7 @@ import { EOL } from "node:os";
 import { isAbsolute as isPathAbsolute } from "node:path";
 import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
-import { type KeyValueLike } from "../common.ts";
+import type { KeyValueLike } from "../common.ts";
 const commandsFile: Set<string> = new Set<string>([
 	"GITHUB_ENV",
 	"GITHUB_OUTPUT",

@@ -2,7 +2,7 @@ import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v
 import envPath from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/path.ts";
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
 import { GitHubActionsFileLineCommand, GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
-import { type KeyValueLike } from "./common.ts";
+import type { KeyValueLike } from "./common.ts";
 const regexpEnvironmentVariableKeyForbidden = /^(?:CI|PATH)$|^(?:ACTIONS|GITHUB|RUNNER)_/i;
 /**
  * Validate the item is a valid GitHub Actions environment variable key.

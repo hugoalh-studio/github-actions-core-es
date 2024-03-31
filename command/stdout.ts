@@ -1,5 +1,5 @@
 import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
-import { type KeyValueLike } from "../common.ts";
+import type { KeyValueLike } from "../common.ts";
 const commandsStdOutCurrent: Set<string> = new Set<string>([
 	"add-mask",
 	"add-matcher",
