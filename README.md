@@ -72,7 +72,7 @@ This is a partial refactor of [the official toolkit][official-toolkit], not all 
 
 *This module does not require any permission.*
 
-## 🧩 API (Excerpt)
+## 🧩 APIs (Excerpt)
 
 > **ℹ️ Note**
 >
@@ -162,7 +162,7 @@ This is a partial refactor of [the official toolkit][official-toolkit], not all 
 - `GitHubReferenceMeta`
 - `GitHubReferenceType`
 
-## ✍️ Example
+## ✍️ Examples
 
 - ```ts
   writeNotice("Hello, world!");
