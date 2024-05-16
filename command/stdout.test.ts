@@ -1,4 +1,4 @@
-import { assertEquals } from "TEST/assert_equals.ts";
+import { assertEquals } from "STD/assert/assert-equals";
 import { GitHubActionsStdOutCommand } from "./stdout.ts";
 Deno.test("Echo Off", { permissions: "none" }, () => {
 	assertEquals(new GitHubActionsStdOutCommand("echo", "off").toString(), "::echo::off");

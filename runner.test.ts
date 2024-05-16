@@ -1,4 +1,4 @@
-import { assert } from "TEST/assert.ts";
+import { assert } from "STD/assert/assert";
 import { getRunnerArchitecture, getRunnerDebugStatus, getRunnerName, getRunnerOS, getRunnerTempPath, getRunnerToolCachePath, getRunnerWorkspacePath, validateInRunner } from "./runner.ts";
 const isInGitHubActionsRunner = Deno.env.get("GITHUB_ACTIONS") === "true";
 Deno.test("Architecture", {
