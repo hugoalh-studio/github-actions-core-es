@@ -1,26 +1,30 @@
 import { appendFileSync, writeFileSync } from "node:fs";
 import { EOL } from "node:os";
 import { isAbsolute as isPathAbsolute } from "node:path";
-import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-es/v1.1.0/env.ts";
 /**
  * **\[🧪 EXPERIMENTAL\]** Handle the summary in the GitHub Actions runner.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  */
 export class GitHubActionsSummary {
 	#commandPath: string;
 	/**
 	 * **\[🧪 EXPERIMENTAL\]** Create new instance to handle the summary in the GitHub Actions runner.
 	 * 
-	 * > **🛡️ Require Permission**
+	 * > **🛡️ Permissions**
 	 * >
-	 * > - Environment Variable (`allow-env`)
-	 * > - File System - Read (`allow-read`)
-	 * > - File System - Write (`allow-write`)
+	 * > | **Target** | **Type** | **Coverage** |
+	 * > |:--|:--|:--|
+	 * > | Deno | Environment Variable (`allow-env`) | Resource |
+	 * > | Deno | File System - Read (`allow-read`) | Resource |
+	 * > | Deno | File System - Write (`allow-write`) | Resource |
 	 */
 	constructor() {
 		const commandPath: string = env.get("GITHUB_STEP_SUMMARY") ?? "";

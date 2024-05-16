@@ -1,4 +1,4 @@
-import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
+import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-es/v1.0.2/mod.ts";
 import { disableProcessStdOutCommand, enableProcessStdOutCommand, GitHubActionsStdOutCommand } from "./command/stdout.ts";
 /**
  * Make secret get masked from the log.

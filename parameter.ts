@@ -1,5 +1,5 @@
-import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
-import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-es/v1.1.0/env.ts";
+import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-es/v1.0.2/mod.ts";
 import { GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
 import type { KeyValueLike } from "./common.ts";
 export interface GitHubActionsInputOptions {
@@ -12,9 +12,11 @@ export interface GitHubActionsInputOptions {
 /**
  * Get the raw value of an input.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @param {string} key Key of the input.
  * @returns {string | undefined} Raw value of the input.
  */
@@ -27,9 +29,11 @@ export function getInputRaw(key: string): string | undefined {
 /**
  * Get the value of an input.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @param {string} key Key of the input.
  * @param {GitHubActionsInputOptions} [options={}] Options.
  * @returns {string} Value of the input.
@@ -47,9 +51,11 @@ export function getInput(key: string, options: GitHubActionsInputOptions = {}): 
 /**
  * Get the big integer value of an input.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @param {string} key Key of the input.
  * @param {GitHubActionsInputOptions} [options={}] Options.
  * @returns {bigint} Big integer value of the input.
@@ -67,9 +73,11 @@ export function getInputBigInt(key: string, options: GitHubActionsInputOptions =
 /**
  * Get the boolean value of an input.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @param {string} key Key of the input.
  * @param {GitHubActionsInputOptions} [options={}] Options.
  * @returns {boolean} Boolean value of the input.
@@ -93,9 +101,11 @@ export function getInputBoolean(key: string, options: GitHubActionsInputOptions 
 /**
  * Get the number value of an input.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @param {string} key Key of the input.
  * @param {GitHubActionsInputOptions} [options={}] Options.
  * @returns {number} Number value of the input.
@@ -113,9 +123,11 @@ export function getInputNumber(key: string, options: GitHubActionsInputOptions =
 /**
  * **\[🧪 EXPERIMENTAL\]** Get the regular expression value of an input.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @param {string} key Key of the input.
  * @param {GitHubActionsInputOptions} [options={}] Options.
  * @returns {RegExp} Regular expression value of the input.
@@ -137,11 +149,13 @@ export function getInputRegExp(key: string, options: GitHubActionsInputOptions =
 /**
  * **\[🅰️ ADVANCED\]** Handle the outputs in the GitHub Actions runner.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  */
 export class GitHubActionsOutput {
 	#command: GitHubActionsFileMapCommand = new GitHubActionsFileMapCommand("GITHUB_OUTPUT");
@@ -198,11 +212,13 @@ export class GitHubActionsOutput {
 /**
  * Set an output.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  * @param {string} key Key of the output.
  * @param {string} value Value of the output.
  * @param {GitHubActionsFileCommandOptions} [options={}] Options.
@@ -218,11 +234,13 @@ export function setOutput(key: string, value: string, options: GitHubActionsFile
 /**
  * Set the outputs.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  * @param {KeyValueLike} pairs Pairs of the output.
  * @param {GitHubActionsFileCommandOptions} [options={}] Options.
  * @returns {void}

@@ -1,13 +1,15 @@
 import { readFileSync } from "node:fs";
 import { isAbsolute as isPathAbsolute } from "node:path";
-import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
-import type { JSONObjectExtend, JSONValueExtend } from "https://raw.githubusercontent.com/hugoalh-studio/is-json-ts/v1.0.1/mod.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-es/v1.1.0/env.ts";
+import type { JSONObjectExtend, JSONValueExtend } from "https://raw.githubusercontent.com/hugoalh-studio/is-json-es/v1.0.2/mod.ts";
 /**
  * Get the URL of the GitHub API.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {URL} URL of the GitHub API.
  * @example
  * getGitHubAPIURL();
@@ -19,9 +21,11 @@ export function getGitHubAPIURL(): URL {
 /**
  * Get the URL of the GitHub GraphQL API.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {URL} URL of the GitHub GraphQL API.
  * @example
  * getGitHubGraphQLAPIURL();
@@ -33,9 +37,11 @@ export function getGitHubGraphQLAPIURL(): URL {
 /**
  * Get the URL of the GitHub server.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {URL} URL of the GitHub server.
  * @example
  * getGitHubServerURL();
@@ -47,9 +53,11 @@ export function getGitHubServerURL(): URL {
 /**
  * Get the name of the workflow; If the workflow file does not specify a name, then the value is the full path of the workflow file in the repository.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} Name of the workflow.
  * @example
  * getWorkflowName();
@@ -65,9 +73,11 @@ export function getWorkflowName(): string {
 /**
  * Get the reference path of the workflow.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} Reference path of the workflow.
  * @example
  * getWorkflowPath();
@@ -83,9 +93,11 @@ export function getWorkflowReferencePath(): string {
 /**
  * Get the repository of the workflow.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} Repository of the workflow.
  * @example
  * getWorkflowRepository();
@@ -101,9 +113,11 @@ export function getWorkflowRepository(): string {
 /**
  * Get the repository ID of the workflow.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {number} Repository ID of the workflow.
  * @example
  * getWorkflowRepositoryID();
@@ -119,9 +133,11 @@ export function getWorkflowRepositoryID(): number {
 /**
  * Get the repository owner of the workflow.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} Repository owner of the workflow.
  * @example
  * getWorkflowRepositoryOwner();
@@ -137,9 +153,11 @@ export function getWorkflowRepositoryOwner(): string {
 /**
  * Get the repository owner ID of the workflow.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {number} Repository owner ID of the workflow.
  * @example
  * getWorkflowRepositoryOwnerID();
@@ -155,9 +173,11 @@ export function getWorkflowRepositoryOwnerID(): number {
 /**
  * Get the action ID of the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} Action ID of the workflow run.
  * @example
  * getWorkflowRunActionID();
@@ -173,9 +193,11 @@ export function getWorkflowRunActionID(): string {
 /**
  * Get the actor ID of the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {number} Actor ID of the workflow run.
  * @example
  * getWorkflowRunActorID();
@@ -191,9 +213,11 @@ export function getWorkflowRunActorID(): number {
 /**
  * Get the actor name that initiate the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} Actor name that initiate the workflow run.
  * @example
  * getWorkflowRunActorName();
@@ -209,9 +233,11 @@ export function getWorkflowRunActorName(): string {
 /**
  * Get the commit SHA that trigger the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} Commit SHA that trigger the workflow run.
  * @example
  * getWorkflowRunCommitSHA();
@@ -268,9 +294,11 @@ export type GitHubActionsEventName = typeof eventsName[number];
 /**
  * Get the event name of the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {GitHubActionsEventName} Event name of the workflow run.
  * @example
  * getWorkflowRunEventName();
@@ -289,9 +317,11 @@ export function getWorkflowRunEventName(): GitHubActionsEventName {
 /**
  * Get the ID of the workflow run; This is a unique number for each workflow run within a repository, and does not change when re-run the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {number} ID of the workflow run.
  * @example
  * getWorkflowRunID();
@@ -307,9 +337,11 @@ export function getWorkflowRunID(): number {
 /**
  * Get the job ID of the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} Job ID of the workflow run.
  * @example
  * getWorkflowRunJobID();
@@ -325,9 +357,11 @@ export function getWorkflowRunJobID(): string {
 /**
  * Get the run number of the workflow; This is a unique number for each run of a particular workflow in a repository, begins at `1` for the workflow's first run, and increments with each new run; This number does not change when re-run the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {number} Run number of the workflow.
  * @example
  * getWorkflowRunNumber();
@@ -391,9 +425,11 @@ export interface GitHubReferenceMeta {
 /**
  * Get the reference of the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {GitHubReferenceMeta} Reference of the workflow run.
  */
 export function getWorkflowRunReference(): GitHubReferenceMeta {
@@ -426,9 +462,11 @@ export function getWorkflowRunReference(): GitHubReferenceMeta {
 /**
  * Get the retention days of the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {number} Retention days of the workflow run.
  * @example
  * getWorkflowRunRetentionDays();
@@ -444,9 +482,11 @@ export function getWorkflowRunRetentionDays(): number {
 /**
  * Get the run attempt of the workflow run; This is a unique number for each attempt of a particular workflow run in a repository, begins at `1` for the workflow run's first attempt, and increments with each re-run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {number} Run attempt of the workflow run.
  * @example
  * getWorkflowRunRunAttempt();
@@ -462,9 +502,11 @@ export function getWorkflowRunRunAttempt(): number {
 /**
  * Get the URL of the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {URL} URL of the workflow run.
  * @example
  * getWorkflowRunURL();
@@ -524,9 +566,11 @@ export interface GitHubActionsWebhookEventPayload extends JSONObjectExtend {
 /**
  * Get the webhook event payload of the workflow run.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * > - File System - Read (`allow-read`)
  * @returns {GitHubActionsWebhookEventPayload} Webhook event payload of the workflow run.
  */
@@ -543,9 +587,11 @@ export function getWorkflowRunWebhookEventPayload(): GitHubActionsWebhookEventPa
 /**
  * Get the SHA of the workflow.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} SHA of the workflow.
  */
 export function getWorkflowSHA(): string {

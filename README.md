@@ -1,14 +1,12 @@
-# GitHub Actions - Core (TypeScript)
+# GitHub Actions - Core (ES)
 
 [**⚖️** MIT](./LICENSE.md)
 
-**🗂️**
-[![GitHub: hugoalh-studio/github-actions-core-ts](https://img.shields.io/badge/hugoalh--studio/github--actions--core--ts-181717?logo=github&logoColor=ffffff&style=flat "GitHub: hugoalh-studio/github-actions-core-ts")](https://github.com/hugoalh-studio/github-actions-core-ts)
-[![JSR: @hugoalh/github-actions-core](https://img.shields.io/badge/JSR-@hugoalh/github--actions--core-F7DF1E?labelColor=F7DF1E&logoColor=000000&style=flat "JSR: @hugoalh/github-actions-core")](https://jsr.io/@hugoalh/github-actions-core)
+[![GitHub: hugoalh-studio/github-actions-core-es](https://img.shields.io/github/v/release/hugoalh-studio/github-actions-core-es?label=hugoalh-studio/github-actions-core-es&labelColor=181717&logo=github&logoColor=ffffff&sort=semver&style=flat "GitHub: hugoalh-studio/github-actions-core-es")](https://github.com/hugoalh-studio/github-actions-core-es)
+[![JSR: @hugoalh/github-actions-core](https://img.shields.io/jsr/v/@hugoalh/github-actions-core?label=JSR%20@hugoalh/github-actions-core&labelColor=F7DF1E&logoColor=000000&style=flat "JSR: @hugoalh/github-actions-core")](https://jsr.io/@hugoalh/github-actions-core)
+[![NPM: @hugoalh/github-actions-core](https://img.shields.io/npm/v/@hugoalh/github-actions-core?label=@hugoalh/github-actions-core&labelColor=CB3837&logo=npm&logoColor=ffffff&style=flat "NPM: @hugoalh/github-actions-core")](https://www.npmjs.com/package/@hugoalh/github-actions-core)
 
-**🆙** ![Latest Release Version](https://img.shields.io/github/release/hugoalh-studio/github-actions-core-ts?sort=semver&color=2187C0&label=&style=flat "Latest Release Version") (![Latest Release Date](https://img.shields.io/github/release-date/hugoalh-studio/github-actions-core-ts?color=2187C0&label=&style=flat "Latest Release Date"))
-
-A TypeScript module to provide a better and easier way for GitHub Actions to communicate with the runner, and the toolkit for developing GitHub Actions in TypeScript.
+An ES (JavaScript & TypeScript) module to provide a better and easier way for GitHub Actions to communicate with the runner, and the toolkit for developing GitHub Actions.
 
 ## ⚠️ Important
 
@@ -16,101 +14,63 @@ A TypeScript module to provide a better and easier way for GitHub Actions to com
 
 This is a partial refactor of [the official toolkit][official-toolkit], not all of the features in [the official toolkit][official-toolkit] are available here, and not all of the features in here are available in [the official toolkit][official-toolkit].
 
-## 🌟 Feature
+## 🌟 Features
 
-- Ability to use directly on GitHub Actions with Deno runtime without extra setup.
+- Ability to use directly on GitHub Actions with Deno runtime without complex setup.
 - Compatible with bundler.
 - Full ModuleJS.
 
-## 🎯 Target
+## 🔰 Begin
 
-- Bun ^ v1.0.0
-- Deno >= v1.34.0 / >= v1.41.1 *(Via JSR)*
-  > **🛡️ Require Permission**
-  >
-  > *N/A*
-- NodeJS >= v16.13.0
+### 🎯 Targets
 
-> **💽 Require Software**
+|  | **Registry - JSR** | **Registry - NPM** | **Remote Import** |
+|:--|:--|:--|:--|
+| **[Bun](https://bun.sh/)** >= v1.1.0 | [✔️ `node_modules`](https://jsr.io/docs/npm-compatibility) | [✔️ Specifier `npm:`](https://bun.sh/docs/runtime/autoimport) | ❌ |
+| **[Deno](https://deno.land/)** >= v1.42.0 | [✔️ Specifier `jsr:`](https://jsr.io/docs/with/deno) | [✔️ Specifier `npm:`](https://docs.deno.com/runtime/manual/node/npm_specifiers) | [✔️](https://docs.deno.com/runtime/manual/basics/modules/#remote-import) |
+| **[NodeJS](https://nodejs.org/)** >= v16.13.0 | [✔️ `node_modules`](https://jsr.io/docs/with/node) | [✔️ `node_modules`](https://docs.npmjs.com/using-npm-packages-in-your-projects) | ❌ |
+
+> **ℹ️ Note**
 >
-> - GitHub Actions Runner
+> It is possible to use this module in other methods/ways which not listed in here, however it is not officially supported.
 
-## 🔰 Usage
+### #️⃣ Registries Identifier
 
-### Via HTTPS
+- **JSR:**
+  ```
+  @hugoalh/github-actions-core
+  ```
+- **NPM:**
+  ```
+  @hugoalh/github-actions-core
+  ```
 
-> **🎯 Supported Target**
+> **ℹ️ Note**
 >
-> - Deno
+> - Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
+> - It is recommended to use this module with tag for immutability.
 
-1. Import at the script (`<ScriptName>.ts`):
-    - Via DenoPKG
-      ```ts
-      import ... from "https://denopkg.com/hugoalh-studio/github-actions-core-ts[@<Tag>]/mod.ts";
-      ```
-    - Via GitHub Raw (Require Tag)
-      ```ts
-      import ... from "https://raw.githubusercontent.com/hugoalh-studio/github-actions-core-ts/<Tag>/mod.ts";
-      ```
-    - Via Pax
-      ```ts
-      import ... from "https://pax.deno.dev/hugoalh-studio/github-actions-core-ts[@<Tag>]/mod.ts";
-      ```
-    > **ℹ️ Note**
-    >
-    > Although it is recommended to import the entire module with the main path `mod.ts`, it is also able to import part of the module with sub path if available, but do not import if:
-    >
-    > - it's file path has an underscore prefix (e.g.: `_foo.ts`, `_util/bar.ts`), or
-    > - it is a benchmark or test file (e.g.: `foo.bench.ts`, `foo.test.ts`), or
-    > - it's symbol has an underscore prefix (e.g.: `export function _baz() {}`).
-    >
-    > These elements are not considered part of the public API, thus no stability is guaranteed for them.
+### #️⃣ Remote Import Paths
 
-### Via JSR With Native Support
+- **GitHub Raw:** (Require Tag)
+  ```
+  https://raw.githubusercontent.com/hugoalh-studio/github-actions-core-es/${Tag}/mod.ts
+  ```
 
-> **🎯 Supported Target**
+> **ℹ️ Note**
 >
-> - Deno
-
-1. Import at the script (`<ScriptName>.ts`):
-    ```ts
-    import ... from "jsr:@hugoalh/github-actions-core[@<Tag>]";
-    ```
-    > **ℹ️ Note**
-    >
-    > Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
-
-### Via JSR With NPM Compatibility Layer Support
-
-> **🎯 Supported Target**
+> - Although it is recommended to import the entire module with the main path `mod.ts`, it is also able to import part of the module with sub path if available, but do not import if:
 >
-> - Bun
-> - NodeJS
+>   - it's file path has an underscore prefix (e.g.: `_foo.ts`, `_util/bar.ts`), or
+>   - it is a benchmark or test file (e.g.: `foo.bench.ts`, `foo.test.ts`), or
+>   - it's symbol has an underscore prefix (e.g.: `export function _baz() {}`).
+>
+>   These elements are not considered part of the public API, thus no stability is guaranteed for them.
+> - Although there have 3rd party services which provide enhanced, equal, or similar methods/ways to remote import the module, beware these services maybe inject unrelated elements and thus affect the security.
 
-1. Install via console/shell/terminal:
-    - Via Bun
-      ```sh
-      bunx jsr add @hugoalh/github-actions-core[@<Tag>]
-      ```
-    - Via NPM
-      ```sh
-      npx jsr add @hugoalh/github-actions-core[@<Tag>]
-      ```
-    - Via PNPM
-      ```sh
-      pnpm dlx jsr add @hugoalh/github-actions-core[@<Tag>]
-      ```
-    - Via Yarn
-      ```sh
-      yarn dlx jsr add @hugoalh/github-actions-core[@<Tag>]
-      ```
-2. Import at the script (`<ScriptName>.ts`):
-    ```ts
-    import ... from "@hugoalh/github-actions-core";
-    ```
-    > **ℹ️ Note**
-    >
-    > Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
+### 🛡️ Permissions
+
+*This module does not require any permission.*
 
 ## 🧩 API (Excerpt)
 

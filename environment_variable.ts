@@ -1,6 +1,6 @@
-import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
-import envPath from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/path.ts";
-import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-es/v1.1.0/env.ts";
+import envPath from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-es/v1.1.0/path.ts";
+import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-es/v1.0.2/mod.ts";
 import { GitHubActionsFileLineCommand, GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
 import type { KeyValueLike } from "./common.ts";
 const regexpEnvironmentVariableKeyForbidden = /^(?:CI|PATH)$|^(?:ACTIONS|GITHUB|RUNNER)_/i;
@@ -33,11 +33,13 @@ export interface GitHubActionsEnvironmentVariableOptions {
 /**
  * **\[🅰️ ADVANCED\]** Handle the exportation of environment variables in the GitHub Actions runner.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  */
 export class GitHubActionsEnvironmentVariableExportation {
 	#command: GitHubActionsFileMapCommand = new GitHubActionsFileMapCommand("GITHUB_ENV");
@@ -46,11 +48,13 @@ export class GitHubActionsEnvironmentVariableExportation {
 	/**
 	 * **\[🅰️ ADVANCED\]** Create new instance to handle the exportation of environment variables in the GitHub Actions runner.
 	 * 
-	 * > **🛡️ Require Permission**
+	 * > **🛡️ Permissions**
 	 * >
-	 * > - Environment Variable (`allow-env`)
-	 * > - File System - Read (`allow-read`)
-	 * > - File System - Write (`allow-write`)
+	 * > | **Target** | **Type** | **Coverage** |
+	 * > |:--|:--|:--|
+	 * > | Deno | Environment Variable (`allow-env`) | Resource |
+	 * > | Deno | File System - Read (`allow-read`) | Resource |
+	 * > | Deno | File System - Write (`allow-write`) | Resource |
 	 * @param {GitHubActionsEnvironmentVariableOptions} [options={}] Options.
 	 */
 	constructor(options: GitHubActionsEnvironmentVariableOptions = {}) {
@@ -117,11 +121,13 @@ export class GitHubActionsEnvironmentVariableExportation {
 /**
  * Set an environment variable.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  * @param {string} key Key of the environment variable.
  * @param {string} value Value of the environment variable.
  * @param {GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions} [options={}] Options.
@@ -137,11 +143,13 @@ export function setEnvironmentVariable(key: string, value: string, options: GitH
 /**
  * Set the environment variables.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  * @param {KeyValueLike} pairs Pairs of the environment variable.
  * @param {GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions} [options={}] Options.
  * @returns {void}
@@ -156,11 +164,13 @@ export function setEnvironmentVariables(pairs: KeyValueLike, options: GitHubActi
 /**
  * **\[🅰️ ADVANCED\]** Handle the exportation of `PATH` in the GitHub Actions runner.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  */
 export class GitHubActionsPATHExportation {
 	#command: GitHubActionsFileLineCommand = new GitHubActionsFileLineCommand("GITHUB_PATH");
@@ -169,11 +179,13 @@ export class GitHubActionsPATHExportation {
 	/**
 	 * **\[🅰️ ADVANCED\]** Create new instance to handle the exportation of `PATH` in the GitHub Actions runner.
 	 * 
-	 * > **🛡️ Require Permission**
+	 * > **🛡️ Permissions**
 	 * >
-	 * > - Environment Variable (`allow-env`)
-	 * > - File System - Read (`allow-read`)
-	 * > - File System - Write (`allow-write`)
+	 * > | **Target** | **Type** | **Coverage** |
+	 * > |:--|:--|:--|
+	 * > | Deno | Environment Variable (`allow-env`) | Resource |
+	 * > | Deno | File System - Read (`allow-read`) | Resource |
+	 * > | Deno | File System - Write (`allow-write`) | Resource |
 	 * @param {GitHubActionsEnvironmentVariableOptions} [options={}] Options.
 	 */
 	constructor(options: GitHubActionsEnvironmentVariableOptions = {}) {
@@ -225,11 +237,13 @@ export class GitHubActionsPATHExportation {
 /**
  * Add the `PATH`.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  * @param {string} path
  * @param {GitHubActionsEnvironmentVariableOptions & GitHubActionsFileCommandOptions} [options={}] Options.
  * @returns {void}

@@ -1,5 +1,5 @@
 import { isAbsolute as isPathAbsolute } from "node:path";
-import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-es/v1.1.0/env.ts";
 const runnerArchitectures = [
 	"ARM",
 	"ARM64",
@@ -13,9 +13,11 @@ export type GitHubActionsRunnerArchitecture = typeof runnerArchitectures[number]
 /**
  * Get the architecture of the GitHub Actions runner.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {GitHubActionsRunnerArchitecture} Architecture of the GitHub Actions runner.
  * @example
  * getRunnerArchitecture();
@@ -37,9 +39,11 @@ export {
 /**
  * Get the debug status of the GitHub Actions runner.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {boolean} Debug status of the GitHub Actions runner.
  */
 export function getRunnerDebugStatus(): boolean {
@@ -51,9 +55,11 @@ export {
 /**
  * Get the name of the GitHub Actions runner.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} Name of the GitHub Actions runner.
  * @example
  * getRunnerName();
@@ -78,9 +84,11 @@ export type GitHubActionsRunnerOS = typeof runnerOSes[number];
 /**
  * Get the OS of the GitHub Actions runner.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {GitHubActionsRunnerOS} OS of the GitHub Actions runner.
  * @example
  * getRunnerOS();
@@ -99,9 +107,11 @@ export function getRunnerOS(): GitHubActionsRunnerOS {
 /**
  * Get the path of the `TEMP` of the GitHub Actions runner; This directory is emptied at the beginning and end of each job, files will not be removed if the runner's user account does not have permission to delete them.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} Path of the `TEMP` of the GitHub Actions runner.
  * @example
  * getRunnerTempPath();
@@ -120,9 +130,11 @@ export function getRunnerTempPath(): string {
 /**
  * Get the path of the tool cache of the GitHub hosted GitHub Actions runner.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string | undefined} Path of the tool cache of the GitHub hosted GitHub Actions runner.
  * @example
  * getRunnerToolCachePath();
@@ -134,9 +146,11 @@ export function getRunnerToolCachePath(): string | undefined {
 /**
  * Get the path of the workspace of the GitHub Actions runner; The default working directory on the runner for steps.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @returns {string} Path of the workspace of the GitHub Actions runner.
  * @example
  * getRunnerWorkspacePath();
@@ -221,9 +235,11 @@ export interface GitHubActionsRunnerTestOptions {
  * 
  * If this test is mandatory, use function {@linkcode validateInRunner} instead.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @param {GitHubActionsRunnerTestOptions} [options={}] Options.
  * @returns {boolean} Test result.
  */
@@ -258,9 +274,11 @@ export function isInRunner(options: GitHubActionsRunnerTestOptions = {}): boolea
  * 
  * If this test is optional, use function {@linkcode isInRunner} instead.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @param {GitHubActionsRunnerTestOptions} [options={}] Options.
  * @returns {void}
  */

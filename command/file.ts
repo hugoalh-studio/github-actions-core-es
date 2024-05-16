@@ -1,8 +1,8 @@
 import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
 import { EOL } from "node:os";
 import { isAbsolute as isPathAbsolute } from "node:path";
-import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
-import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-es/v1.1.0/env.ts";
+import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-es/v1.0.2/mod.ts";
 import type { KeyValueLike } from "../common.ts";
 const commandsFile: Set<string> = new Set<string>([
 	"GITHUB_ENV",
@@ -15,11 +15,13 @@ const regexpCommandFile = /^(?:[\dA-Z][\dA-Z_-]*)?[\dA-Z]$/;
 /**
  * **\[🅰️ ADVANCED\]** Communicate with the GitHub Actions runner via file command.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  * @access private
  */
 class GitHubActionsFileCommandBase {
@@ -27,11 +29,13 @@ class GitHubActionsFileCommandBase {
 	/**
 	 * **\[🅰️ ADVANCED\]** Create new instance to communicate with the GitHub Actions runner via file command.
 	 * 
-	 * > **🛡️ Require Permission**
+	 * > **🛡️ Permissions**
 	 * >
-	 * > - Environment Variable (`allow-env`)
-	 * > - File System - Read (`allow-read`)
-	 * > - File System - Write (`allow-write`)
+	 * > | **Target** | **Type** | **Coverage** |
+	 * > |:--|:--|:--|
+	 * > | Deno | Environment Variable (`allow-env`) | Resource |
+	 * > | Deno | File System - Read (`allow-read`) | Resource |
+	 * > | Deno | File System - Write (`allow-write`) | Resource |
 	 * @param {string} command File command.
 	 */
 	constructor(command: string) {
@@ -76,11 +80,13 @@ export interface GitHubActionsFileCommandOptions {
 /**
  * **\[🅰️ ADVANCED\]** Communicate with the GitHub Actions runner via file line command.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  */
 export class GitHubActionsFileLineCommand extends GitHubActionsFileCommandBase {
 	/**
@@ -137,11 +143,13 @@ function formatFileMapCommand(inputs: Map<string, string>): string {
 /**
  * **\[🅰️ ADVANCED\]** Communicate with the GitHub Actions runner via file map command.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  */
 export class GitHubActionsFileMapCommand extends GitHubActionsFileCommandBase {
 	/**

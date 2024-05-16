@@ -1,13 +1,15 @@
-import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts";
-import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts";
+import env from "https://raw.githubusercontent.com/hugoalh-studio/cross-env-es/v1.1.0/env.ts";
+import { isStringSingleLine } from "https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-es/v1.0.2/mod.ts";
 import { GitHubActionsFileMapCommand, type GitHubActionsFileCommandOptions } from "./command/file.ts";
 import type { KeyValueLike } from "./common.ts";
 /**
  * Get the raw value of a state.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @param {string} key Key of the state.
  * @returns {string | undefined} Raw value of the state.
  */
@@ -20,9 +22,11 @@ export function getStateRaw(key: string): string | undefined {
 /**
  * Get the value of a state.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
  * @param {string} key Key of the state.
  * @returns {string} Value of the state.
  */
@@ -32,11 +36,13 @@ export function getState(key: string): string {
 /**
  * **\[🅰️ ADVANCED\]** Handle the exportation of states in the GitHub Actions runner.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  */
 export class GitHubActionsStateExportation {
 	#command: GitHubActionsFileMapCommand = new GitHubActionsFileMapCommand("GITHUB_STATE");
@@ -93,11 +99,13 @@ export class GitHubActionsStateExportation {
 /**
  * Set a state.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  * @param {string} key Key of the state.
  * @param {string} value Value of the state.
  * @param {GitHubActionsFileCommandOptions} [options={}] Options.
@@ -113,11 +121,13 @@ export function setState(key: string, value: string, options: GitHubActionsFileC
 /**
  * Set the states.
  * 
- * > **🛡️ Require Permission**
+ * > **🛡️ Permissions**
  * >
- * > - Environment Variable (`allow-env`)
- * > - File System - Read (`allow-read`)
- * > - File System - Write (`allow-write`)
+ * > | **Target** | **Type** | **Coverage** |
+ * > |:--|:--|:--|
+ * > | Deno | Environment Variable (`allow-env`) | Resource |
+ * > | Deno | File System - Read (`allow-read`) | Resource |
+ * > | Deno | File System - Write (`allow-write`) | Resource |
  * @param {KeyValueLike} pairs Pairs of the state.
  * @param {GitHubActionsFileCommandOptions} [options={}] Options.
  * @returns {void}

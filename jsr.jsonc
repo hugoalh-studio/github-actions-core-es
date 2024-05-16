@@ -1,5 +1,5 @@
-// This file is only for JSR related, non-JSR related must set in the file `deno.jsonc`!
 {
+	"$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
 	"name": "@hugoalh/github-actions-core",
 	"version": "0.2.1",
 	"exports": {
@@ -16,10 +16,10 @@
 		".": "./mod.ts"
 	},
 	"imports": {
-		"https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/env.ts": "jsr:@hugoalh/cross-env@1.1.0/env",
-		"https://raw.githubusercontent.com/hugoalh-studio/cross-env-ts/v1.1.0/path.ts": "jsr:@hugoalh/cross-env@1.1.0/path",
-		"https://raw.githubusercontent.com/hugoalh-studio/is-json-ts/v1.0.1/mod.ts": "jsr:@hugoalh/is-json@1.0.1",
-		"https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-ts/v1.0.0/mod.ts": "jsr:@hugoalh/is-string-singleline@1.0.0"
+		"https://raw.githubusercontent.com/hugoalh-studio/cross-env-es/v1.1.0/env.ts": "jsr:@hugoalh/cross-env@1.1.0/env",
+		"https://raw.githubusercontent.com/hugoalh-studio/cross-env-es/v1.1.0/path.ts": "jsr:@hugoalh/cross-env@1.1.0/path",
+		"https://raw.githubusercontent.com/hugoalh-studio/is-json-es/v1.0.2/mod.ts": "jsr:@hugoalh/is-json@1.0.2",
+		"https://raw.githubusercontent.com/hugoalh-studio/is-string-singleline-es/v1.0.2/mod.ts": "jsr:@hugoalh/is-string-singleline@1.0.2"
 	},
 	"publish": {
 		"exclude": [
@@ -34,9 +34,12 @@
 			"**/bench.ts",
 			"**/bench.tsx",
 			"**/test.ts",
-			"**/test.tsx"
+			"**/test.tsx",
+			".dnt.ts",
+			"npm/**"
 		],
 		"include": [
+			"**/*.json",
 			"**/*.ts",
 			"**/*.tsx",
 			"jsr.jsonc",
